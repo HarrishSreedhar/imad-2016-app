@@ -9,6 +9,7 @@ var config={
     port:'5432',
   password:process.env.DB_PASSWORD  
 };
+var crypto=require('crypto');
 var app = express();
 app.use(morgan('combined'));
 /*var articles={
@@ -128,6 +129,17 @@ app.get('/test',function(req,res){
        }
    });   
 });
+function hash(input,salt){
+    var has=crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
+    return has.toString('hex');
+}
+
+app.get('/hashed:input',function(req,res){
+    var has=hash(req.params.input,'this-is-some-random-string');
+    res.send(has);  
+})
+
+
 var counter=0;
 app.get('/counter',function(req,res){
    counter+=1;
