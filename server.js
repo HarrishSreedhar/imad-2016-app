@@ -149,6 +149,9 @@ app.get('/', function (req, res) {
 //app.get('/article-one',function(req,res){
 //res.sendFile(path.join(__dirname,'article-one.html')); 
 //});
+app.get('/ar1',function(req,res){
+res.sendFile(path.join(__dirname,'ar1.html')); 
+});
 app.get('/articles/:articleName',function(req,res){
 
 // pool.query("SELECT * FROM articles where title= '"+req.params.articleName+"'",function(err,result){
