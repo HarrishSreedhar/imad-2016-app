@@ -164,7 +164,19 @@ app.get('/', function (req, res) {
 //res.sendFile(path.join(__dirname,'article-one.html')); 
 //});
 app.get('/ar1',function(req,res){
-res.sendFile(path.join(__dirname,'ar1.html')); 
+res.sendFile(path.join(__dirname,'ar1.html'));
+});
+app.post("/create", function(req, res) {
+  //  var objBD = BD();
+
+    var post = {
+        first: req.body.first
+              };
+              var query = connection.query('INSERT INTO data ?', post, function(err, result) {
+ 
+});
+console.log(query.sql);
+
 });
 app.get('/articles/:articleName',function(req,res){
 
@@ -185,6 +197,7 @@ app.get('/articles/:articleName',function(req,res){
  });
   
 });
+
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
