@@ -2,21 +2,21 @@ var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
 var Pool = require('pg').Pool
-var config={
+/*var config={
     user: 'harrishsreedhar',
     database:'harrishsreedhar',
     host:'db.imad.hasura-app.io',
     port:'5432',
   password:process.env.DB_PASSWORD  
-};
-/*var mysql = require('node-mysql');
+};*/
+var mysql = require('node-mysql');
 var conn = mysql.createConnection({
  user: 'harrishsreedhar',
     database:'harrishsreedhar',
     host:'db.imad.hasura-app.io',
     port:'5555',
   password:process.env.DB_PASSWORD
-});*/
+});
 
 
   
@@ -92,8 +92,8 @@ app.get('/', function (req, res) {
 //app.get('/article-one',function(req,res){
 //res.sendFile(path.join(__dirname,'article-one.html')); 
 //});
-app.get('/en/data', function (req, res) {
-var da=12;
+app.get('/en/:data', function (req, res) {
+var da=req.params.data;
     pool.query('INSERT INTO data (val) VALUES ($1)',da , function(err) {
     if (err) return onError(err);
 
@@ -110,8 +110,12 @@ var da=12;
 app.get('/articles/:articleName',function(req,res){
 
 // pool.query("SELECT * FROM articles where title= '"+req.params.articleName+"'",function(err,result){
-  pool.query("SELECT * FROM articles where title=$1",[req.params.articleName],function(err,result){
-     if(err){
+ // pool.query("SELECT * FROM articles where title=$1",[req.params.articleName],function(err,result){
+   connection.connect();  
+ 
+conn.query("SELECT * FROM articles where title=$1",[req.params.articleName], function(err, rows, fields)   
+{  
+    if(err){
          res.status(500).send(err.toString());
      } else { 
          if(result.rows.length===0)
