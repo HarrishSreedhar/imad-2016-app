@@ -3,6 +3,7 @@ var morgan = require('morgan');
 var path = require('path');
 var Pool = require('pg').Pool;
 var crypto=require('crypto');
+var bodyParser=require('bodyparser');
 
 var config={
     user: 'harrishsreedhar',
@@ -24,6 +25,7 @@ var conn = mysql.createConnection({
   
 var app = express();
 app.use(morgan('combined'));
+app.use(bodyParser.json());
 
 function createtemplate(data){
     var title=data.title;
@@ -119,6 +121,24 @@ app.get('/articles/:articleName',function(req,res){
      }
  });
   
+});
+app.post('/create-user',function(req,res){
+    var name=req.body.name;
+    var pass=req.body.pass;
+    var salt=crypto.RandomBytes(128).toString('hex');
+    var dbs=hash(password,salt);
+   pool.query('Insert into logs(name,pass) VALUES($1,$2)',[name,dbs],function(req,res){
+      if(err){
+         res.status(500).send(err.toString());
+     }else{
+         res.send('data created');
+     } 
+   });
+});
+app.get('login',function(req,res){
+   var name=req.body.first;
+   var pass=req.body.last;
+   pool.query("SELECT * from logs ");
 });
 app.get('/hash/:input',function(req,res){
     var has=hash(req.params.input,'this-is-some-random-string');
