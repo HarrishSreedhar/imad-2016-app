@@ -14,7 +14,7 @@ var conn = mysql.createConnection({
  user: 'harrishsreedhar',
     database:'harrishsreedhar',
     host:'db.imad.hasura-app.io',
-    port:'5432',
+    port:'5555',
   password:process.env.DB_PASSWORD
 });
 app.get('/en-data', function (req, res) {
