@@ -17,16 +17,8 @@ var conn = mysql.createConnection({
     port:'5555',
   password:process.env.DB_PASSWORD
 });*/
-app.get('/en-data', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ar1.html'));
-});
-app.post('/create',function(req,res){
-    var da=req.body.first;
-   var sql="INSERT INTO DATA VALUES ?";
-  conn.query(sql, da, function(err) {
-    if (err) throw err;
-    conn.end();
-});
+
+
   
 var app = express();
 app.use(morgan('combined'));
@@ -75,7 +67,6 @@ app.get('/test',function(req,res){
            res.send(JSON.stringify(result.rows));
        }
    });   
-});
 
 
  
@@ -101,6 +92,20 @@ app.get('/', function (req, res) {
 //app.get('/article-one',function(req,res){
 //res.sendFile(path.join(__dirname,'article-one.html')); 
 //});
+app.get('/en-data', function (req, res) {
+var da=12;
+    pool.query('INSERT INTO data (cal) VALUES ($1)',da , function(err) {
+    if (err) return onError(err);
+
+    // get the total number of visits today (including the current visit)
+   /* pool.query('SELECT COUNT(date) AS count FROM visit', function(err, result) {
+      // handle an error from the query
+      if(err) return onError(err);
+      res.writeHead(200, {'content-type': 'text/plain'});
+      res.end('You are visitor number ' + result.rows[0].count);*/
+  
+});
+});
 app.get('/articles/:articleName',function(req,res){
 
 // pool.query("SELECT * FROM articles where title= '"+req.params.articleName+"'",function(err,result){
