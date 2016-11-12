@@ -61,10 +61,7 @@ var htmltemplate=`<html>
 return htmltemplate;    
 
 }
-function hash(input,salt){
-    var has=crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
-    return has.toString('hex');
-}
+
 var pool = new Pool(config);
 app.get('/test',function(req,res){
    pool.query("SELECT * FROM test",function(err,result){
@@ -121,13 +118,16 @@ app.get('/articles/:articleName',function(req,res){
      }
  });
   
-});
+});function hash(input,salt){
+    var has=crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
+    return ["pbkdf2","10000",salt,has.toString('hex')].join('$');
+}
 app.post('/create-user',function(req,res){
     var name=req.body.name;
     var pass=req.body.pass;
     var salt=crypto.RandomBytes(128).toString('hex');
     var dbs=hash(password,salt);
-   pool.query('Insert into logs(name,pass) VALUES($1,$2)',[name,dbs],function(req,res){
+   pool.query('Insert into logs(name,pass) VALUES($1,$2)',[name,dbs],function(err,result){
       if(err){
          res.status(500).send(err.toString());
      }else{
@@ -138,7 +138,29 @@ app.post('/create-user',function(req,res){
 app.get('login',function(req,res){
    var name=req.body.first;
    var pass=req.body.last;
-   pool.query("SELECT * from logs ");
+   pool.query("SELECT * from logs where name=$1",[name],function(err,result){
+       if(err){
+           res.status(500).send(err.toString());
+       }
+       else{
+            if(result.rows.length===0){
+                res.send(403).send('username/pass is invalid');
+            }
+            else{
+                var dbs=result.rows[0].password;
+                dbs.split('$')[2];
+                var hashp=hash(pass,salt);
+                if(hashp===dbs)
+                res.send('Successfull');
+                else{
+                    res.send(403).send("invalid username/password");
+                }
+                
+            }
+       }
+       
+  
+   });
 });
 app.get('/hash/:input',function(req,res){
     var has=hash(req.params.input,'this-is-some-random-string');
