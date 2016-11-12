@@ -1,5 +1,5 @@
 var button=document.getElementById("counter");
-button.onclick=function(){
+/*button.onclick=function(){
 var request=new XMLHttpRequest();
 request.onreadystatechange=function(){
     if(request.readyState===XMLHttpRequest.DONE){
@@ -16,7 +16,7 @@ request.onreadystatechange=function(){
 };
     request.open("GET","http://harrishsreedhar.imad.hasura-app.io/counter",true);
     request.send(null);
-};
+};*/
 var sub=document.getElementById("submit_btn");
 
 sub.onclick=function(){
@@ -24,20 +24,19 @@ sub.onclick=function(){
     request.onreadystatechange=function(){
        if(request.readyState===XMLHttpRequest.DONE) {
            if(request.status===200){
-               var n=request.responseText;
-               n=JSON.parse(n);
-               var list='';
-               for(var i=0;i<n.length;i++)
-               {
-                   list+='<li>'+n[i]+'</li>';
-               }
-                var ul = document.getElementById('namelist');
-                    ul.innerHTML = list;
+              console.log("user looged in");alert("successfull");
+           }else if(request.status===403){
+               alert('incorrect');
            }
+           else if(request.status===500)
+           alert("went wrong on server");
        }
+       
     };
-     var na=document.getElementById("name");
-     var n=na.value;
-     request.open("GET","http://harrishsreedhar.imad.hasura-app.io/submit-name?name="+n,true);
-     request.send(null);
+     var name=document.getElementById("name").value;
+     var pass=document.getElementById("pass").value;
+
+     request.open("POST","http://harrishsreedhar.imad.hasura-app.io/login",true);
+     request.setRequestHeader('Content-Type','application/json');
+     request.send(JSON.stringify({name:name,pass:pass}));
 };
