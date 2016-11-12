@@ -131,6 +131,20 @@ app.get('/test',function(req,res){
 app.get('/en-data', function (req, res) {
   res.sendFile(path.join(__dirname, 'ar1.html'));
 });
+app.post('/create',function(req,res){
+    
+    pool.getConnection(function(err, connection) {
+        var da=req.body.first;
+     connection.query('INSERT INTO data SET ?', da,   function(err, result) {
+          if (err) throw err;
+            else {
+                console.log('successfully added to DB');
+                connection.release();
+            }
+      });
+ });
+ 
+});
 var counter=0;
 app.get('/counter',function(req,res){
    counter+=1;
