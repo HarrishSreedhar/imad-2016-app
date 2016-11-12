@@ -9,6 +9,14 @@ var config={
     port:'5432',
   password:process.env.DB_PASSWORD  
 };
+var mysql = require('mysql');
+var conn = mysql.createConnection({
+    user: 'harrishsreedhar',
+    database:'harrishsreedhar',
+    host:'db.imad.hasura-app.io',
+    port:'5432',
+  password:process.env.DB_PASSWORD 
+});
 var app = express();
 app.use(morgan('combined'));
 
@@ -57,6 +65,23 @@ app.get('/test',function(req,res){
        }
    });   
 });
+
+app.get('/enter-data',function(req,res,next){
+    res.sendFile('ar1.html');
+});
+app.post('/create',function(req,res){
+    console.log('req.body');
+console.log(req.body);
+res.write('You sent the name "' + req.body.first+'".\n');
+res.end();
+    var sql = "INSERT INTO Test VALUES ?";
+var values =req.body.first;
+conn.query(sql, values, function(err) {
+    if (err) throw err;
+    conn.end();
+});
+});
+ 
 var counter=0;
 app.get('/counter',function(req,res){
    counter+=1;
