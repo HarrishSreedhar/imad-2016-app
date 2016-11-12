@@ -9,27 +9,23 @@ var config={
     port:'5432',
   password:process.env.DB_PASSWORD  
 };
-var mysql = require('node-mysql');
+/*var mysql = require('node-mysql');
 var conn = mysql.createConnection({
  user: 'harrishsreedhar',
     database:'harrishsreedhar',
     host:'db.imad.hasura-app.io',
     port:'5555',
   password:process.env.DB_PASSWORD
-});
+});*/
 app.get('/en-data', function (req, res) {
   res.sendFile(path.join(__dirname, 'ar1.html'));
 });
 app.post('/create',function(req,res){
-
-   
-        var da=req.body.first;
+    var da=req.body.first;
    var sql="INSERT INTO DATA VALUES ?";
   conn.query(sql, da, function(err) {
     if (err) throw err;
     conn.end();
-
-    
 });
   
 var app = express();
