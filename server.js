@@ -92,18 +92,19 @@ app.get('/', function (req, res) {
 //app.get('/article-one',function(req,res){
 //res.sendFile(path.join(__dirname,'article-one.html')); 
 //});
-app.get('/en-data', function (req, res) {
+app.get('/en/data', function (req, res) {
 var da=12;
-    pool.query('INSERT INTO data (cal) VALUES ($1)',da , function(err) {
+    pool.query('INSERT INTO data (val) VALUES ($1)',da , function(err) {
     if (err) return onError(err);
 
     // get the total number of visits today (including the current visit)
-   /* pool.query('SELECT COUNT(date) AS count FROM visit', function(err, result) {
+    pool.query('SELECT COUNT(val) AS count FROM data', function(err, result) {
       // handle an error from the query
       if(err) return onError(err);
       res.writeHead(200, {'content-type': 'text/plain'});
-      res.end('You are visitor number ' + result.rows[0].count);*/
+      res.end('You are visitor number ' + result.rows[0].count);
   
+});
 });
 });
 app.get('/articles/:articleName',function(req,res){
