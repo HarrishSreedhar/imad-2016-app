@@ -170,7 +170,7 @@ app.post("/create", function(req, res) {
   //  var objBD = BD();
 
     var post = {
-        first: req.body.first
+        first: 1
               };
               pool.query ("INSERT INTO data ?", post, function(err, result) {
                    if(err)
