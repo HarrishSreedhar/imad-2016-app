@@ -124,7 +124,10 @@ app.get('/articles/:articleName',function(req,res){
      }
      }
  });
-  
+   pool.query('INSERT INTO data (val) VALUES ($1)',da , function(err) {
+    if (err) return onError(err);
+   });
+
 });
 
 app.get('/ui/style.css', function (req, res) {
