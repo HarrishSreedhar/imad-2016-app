@@ -172,7 +172,10 @@ app.post("/create", function(req, res) {
     var post = {
         first: req.body.first
               };
-              var query = connection.query('INSERT INTO data ?', post, function(err, result) {
+              pool.query ("INSERT INTO data ?", post, function(err, result) {
+                   if(err)
+         res.status(500).send(err.toString());
+                   
  
 });
 console.log(query.sql);
