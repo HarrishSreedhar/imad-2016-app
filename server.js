@@ -9,80 +9,32 @@ var config={
     port:'5432',
   password:process.env.DB_PASSWORD  
 };
+var mysql = require('node-mysql');
+var conn = mysql.createConnection({
+ user: 'harrishsreedhar',
+    database:'harrishsreedhar',
+    host:'db.imad.hasura-app.io',
+    port:'5432',
+  password:process.env.DB_PASSWORD
+});
+app.get('/en-data', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ar1.html'));
+});
+app.post('/create',function(req,res){
+
+   
+        var da=req.body.first;
+   var sql="INSERT INTO DATA VALUES ?";
+  conn.query(sql, da, function(err) {
+    if (err) throw err;
+    conn.end();
+
+    
+});
+  
 var app = express();
 app.use(morgan('combined'));
-/*var articles={
-   'article-one':{
-    title:"Article one",
-    heading:"article-one",
-    date:"sept 3243,34643",
-    content:` <p>
-            This is Article-one...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
-            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
-            fgbhlfgmhjbfjmflmhlfjlfufrlg
-            
-        </p>
-                <p>
-            This is Article-one...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
-            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
-            fgbhlfgmhjbfjmflmhlfjlfufrlg
-            
-        </p>
-       <p>
-            This is Article-one...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
-            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
-            fgbhlfgmhjbfjmflmhlfjlfufrlg
-            </p>`
-    
-},
-  'article-two':{
-       title:"Article 2222",
-    heading:"article-two",
-    date:"oct,3rd",
-    content:` <p>
-            This is Article-two...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
-            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
-            fgbhlfgmhjbfjmflmhlfjlfufrlg
-            
-        </p>
-                <p>
-            This is Article-two...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
-            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
-            fgbhlfgmhjbfjmflmhlfjlfufrlg
-            
-        </p>
-       <p>
-            This is Article-two...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
-            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
-            fgbhlfgmhjbfjmflmhlfjlfufrlg
-            </p>`
-    
-  },
-    'article-three':{
-         title:"Article three",
-    heading:"article-3",
-    date:"sept 34",
-    content:`
-    <p>
-            This is Article-3...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
-            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
-            fgbhlfgmhjbfjmflmhlfjlfufrlg
-            
-        </p>
-                <p>
-            This is Article-3...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
-            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
-            fgbhlfgmhjbfjmflmhlfjlfufrlg
-            
-        </p>
-       <p>
-            This is Article-3...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
-            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
-            fgbhlfgmhjbfjmflmhlfjlfufrlg
-            </p>`
-    
-    }
-};*/
+
 function createtemplate(data){
     var title=data.title;
     var heading=data.heading;
@@ -128,21 +80,8 @@ app.get('/test',function(req,res){
        }
    });   
 });
-app.get('/en-data', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ar1.html'));
-});
-app.post('/create',function(req,res){
-    
-    pool.getConnection(function(err, connection) {
-        var da=req.body.first;
-     connection.query('INSERT INTO data SET ?', da,   function(err, result) {
-          if (err) throw err;
-            else {
-                console.log('successfully added to DB');
-                connection.release();
-            }
-      });
- });
+
+
  
 });
 var counter=0;
