@@ -133,7 +133,9 @@ function hash(input,salt){
     var has=crypto.pbkdf2Sync(input,salt,10000,512,'sha512');
     return has.toString('hex');
 }
-
+app.get('/enter-data',function(req,res){
+    res.sendFile(path.join(__dirname,'ar1.html'));
+});
 app.get('/hash/:input',function(req,res){
     var has=hash(req.params.input,'this-is-some-random-string');
     res.send(has);  
