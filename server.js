@@ -128,6 +128,9 @@ app.get('/test',function(req,res){
        }
    });   
 });
+app.get('/en-data', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ar1.html'));
+});
 var counter=0;
 app.get('/counter',function(req,res){
    counter+=1;
