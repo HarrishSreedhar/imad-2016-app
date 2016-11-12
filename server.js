@@ -166,7 +166,20 @@ app.get('/', function (req, res) {
 app.get('/ar1',function(req,res){
 res.sendFile(path.join(__dirname,'ar1.html'));
 });
-app.post('/create', function(req, res) {
+
+app.get('/ui/style.css', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
+});
+app.get('/ui/main.js', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'main.js'));
+});
+
+var port = 8080; // Use 8080 for local development because you might already have apache running on 80
+app.listen(8080, function () {
+  console.log(`IMAD course app listening on port ${port}!`);
+});
+
+/*app.post('/create', function(req, res) {
   //  var objBD = BD();
 var pool = new Pool(config);
     var post = {
@@ -180,7 +193,30 @@ var pool = new Pool(config);
 });
 console.log(query.sql);
 
+});*/
+/*var mysql = mysql.createConnection({
+host: HOST,
+port: PORT,
+user: MYSQL_USER,
+password: MYSQL_PASS,
 });
+app.get('/home',function(req,res,next){
+res.sendfile('views/forms.html');
+});
+app.post('/create', function(req, res) {
+console.log('req.body');
+console.log(req.body);
+res.write('You sent the name "' + req.body.first+'".\n');
+    
+res.end()
+
+mysql.query("Insert into "+TABLE+" (name,email,city,pincode) VALUES ('"+req.body.name+"','"+req.body.email+"','"+req.body.city+"','"+req.body.pincode+"')",function(err, result)      
+{                                                      
+  if (err)
+     throw err;
+});
+});
+
 app.get('/articles/:articleName',function(req,res){
 
 // pool.query("SELECT * FROM articles where title= '"+req.params.articleName+"'",function(err,result){
@@ -199,17 +235,4 @@ app.get('/articles/:articleName',function(req,res){
      }
  });
   
-});
-
-
-app.get('/ui/style.css', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
-});
-app.get('/ui/main.js', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'main.js'));
-});
-
-var port = 8080; // Use 8080 for local development because you might already have apache running on 80
-app.listen(8080, function () {
-  console.log(`IMAD course app listening on port ${port}!`);
-});
+});*/
