@@ -168,7 +168,7 @@ res.sendFile(path.join(__dirname,'ar1.html'));
 });
 app.post('/create', function(req, res) {
   //  var objBD = BD();
-
+var pool = new Pool(config);
     var post = {
         first: 1
               };
