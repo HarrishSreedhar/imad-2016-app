@@ -156,7 +156,9 @@ app.post('/create-list', function (req, res) {
    
         // First check if the article exists and get the article-id
         
-                    pool.query("INSERT INTO list (id,list) VALUES ('1', $1,)", [req.body.li],
+                //    pool.query("INSERT INTO list (id,list) VALUES ('1', $1,)", [req.body.li],
+                   pool.query("INSERT INTO list (id,list) VALUES ('1', $1,)",
+                  
                         function (err, result) {
                             if (err) 
                                 res.status(500).send(err.toString());
