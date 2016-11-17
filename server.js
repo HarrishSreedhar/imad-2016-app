@@ -68,11 +68,11 @@ function createTemplate (data) {
 }
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+  res.sendFile(path.join(__dirname, 'ui', 'to1.html'));
 });
-app.get('/to', function (req, res) {
-  res.sendFile(path.join(__dirname, 'to1.html'));
-});
+//app.get('/to', function (req, res) {
+  //res.sendFile(path.join(__dirname, 'to1.html'));
+//});
 app.get('/to2', function (req, res) {
   res.sendFile(path.join(__dirname, 't2.html'));
 });
