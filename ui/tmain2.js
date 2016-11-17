@@ -79,6 +79,6 @@ list.addEventListener('click', function(ev) {
         div.style.display = "none";
       };
     
-         addl();
+         
     }
   }
