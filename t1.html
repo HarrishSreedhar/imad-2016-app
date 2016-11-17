@@ -12,14 +12,9 @@
 	
 function loadLoginForm () {
     var loginHtml = `
-        <h3>Login/Register to unlock awesome features</h3>
-        <input type="text" id="username" placeholder="username" />
-        <input type="password" id="password" />
-        <br/><br/>
-        <input type="submit" id="login_btn" value="Login" />
-        <input type="submit" id="register_btn" value="Register" />
+        
         `;
-    document.getElementById('login_area').innerHTML = loginHtml;
+   // document.getElementById('login_area').innerHTML = loginHtml;
     
     // Submit username/password to login
     var submit = document.getElementById('login_btn');
@@ -119,7 +114,7 @@ function loadLogin () {
 
 
 // The first thing to do is to check if the user is logged in!
-loadLoginForm();
+loadLogin();
 
 // Now this is something that we could have directly done on the server-side using templating too!
 
@@ -175,7 +170,12 @@ loadLoginForm();
 				<h2 class="title">LOGIN/Register</h2>
 				
 		<h2 id="r" >
-	<div id="login_area">loading....</div>
+	<div id="login_area"><h3>Login/Register to unlock awesome features</h3>
+        <input type="text" id="username" placeholder="username" />
+        <input type="password" id="password" />
+        <br/><br/>
+        <input type="submit" id="login_btn" value="Login" />
+        <input type="submit" id="register_btn" value="Register" /></div>
 	</h2> 
 		
 	</div>
