@@ -11,8 +11,12 @@
 <script type="text/javascript">
 	
 function loadLoginForm () {
-    var loginHtml = `
-        
+    var loginHtml = `<h3>Login/Register to unlock awesome features</h3>
+        Username:<input type="text" id="username" placeholder="username" /><br>
+        Password:<input type="password" id="password" />
+        <br/><br/>
+        <input type="submit" id="login_btn" value="Login" />
+        <input type="submit" id="register_btn" value="Register" />
         `;
    // document.getElementById('login_area').innerHTML = loginHtml;
     
@@ -51,6 +55,7 @@ function loadLoginForm () {
         request.setRequestHeader('Content-Type', 'application/json');
         request.send(JSON.stringify({username: username, password: password}));  
         submit.value = 'Logging in...';
+        Load
         
     };
     
@@ -171,12 +176,7 @@ loadLogin();
 				<h2 class="title">LOGIN/Register</h2>
 				
 		
-	<div id="login_area"><h3>Login/Register to unlock awesome features</h3>
-        Username:<input type="text" id="username" placeholder="username" /><br>
-        Password:<input type="password" id="password" />
-        <br/><br/>
-        <input type="submit" id="login_btn" value="Login" />
-        <input type="submit" id="register_btn" value="Register" /></div>
+	<div id="login_area"></div>
 	
 		
 	</div>
