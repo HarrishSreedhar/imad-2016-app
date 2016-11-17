@@ -80,7 +80,9 @@ app.get('/to2', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui','images','madi.jpg'));
   app.get('/ui/st.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'st.css'));*/
-
+app.get('/ui/tmain.js', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'tmain.js'));
+});
 
 function hash (input, salt) {
     // How do we create a hash?
