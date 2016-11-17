@@ -6,12 +6,12 @@ var crypto = require('crypto');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var config = {
-   user: 'harrishsreedhar',
+var config={
+    user: 'harrishsreedhar',
     database:'harrishsreedhar',
-    host: 'db.imad.hasura-app.io',
-    port: '5432',
-    password: process.env.DB_PASSWORD
+    host:'db.imad.hasura-app.io',
+    port:'5432',
+  password:process.env.DB_PASSWORD  
 };
 
 var app = express();
@@ -22,58 +22,24 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 30}
 }));
 
-function createTemplate (data) {
-    var title = data.title;
-    var date = data.date;
-    var heading = data.heading;
-    var content = data.content;
-    
-    var htmlTemplate = `
-    <html>
-      <head>
-          <title>
-              ${title}
-          </title>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link href="/ui/style.css" rel="stylesheet" />
-      </head> 
-      <body>
-          <div class="container">
-              <div>
-                  <a href="/">Home</a>
-              </div>
-              <hr/>
-              <h3>
-                  ${heading}
-              </h3>
-              <div>
-                  ${date.toDateString()}
-              </div>
-              <div>
-                ${content}
-              </div>
-              <hr/>
-              <h4>Comments</h4>
-              <div id="comment_form">
-              </div>
-              <div id="comments">
-                <center>Loading comments...</center>
-              </div>
-          </div>
-          <script type="text/javascript" src="/ui/article.js"></script>
-      </body>
-    </html>
-    `;
-    return htmlTemplate;
-}
-
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+  res.sendFile(path.join(__dirname,'to1.html'));
 });
-app.get('/to', function (req, res) {
- res.sendFile(path.join(__dirname,'to1.html'));
  app.get('/list', function (req, res) {
   res.sendFile(path.join(__dirname,'t2.html')); 
+});
+//app.get('/to', function (req, res) {
+  //res.sendFile(path.join(__dirname, 'to1.html'));
+//});
+app.get('/to2', function (req, res) {
+  res.sendFile(path.join(__dirname, 't2.html'));
+});
+/*app.get('/ui/images/new.jpg', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui','images','madi.jpg'));
+  app.get('/ui/st.css', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'st.css'));*/
+app.get('/ui/tmain.js', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'tmain.js'));
 });
 
 function hash (input, salt) {
@@ -96,7 +62,7 @@ app.post('/create-user', function (req, res) {
    var password = req.body.password;
    var salt = crypto.randomBytes(128).toString('hex');
    var dbString = hash(password, salt);
-   pool.query('INSERT INTO "user" (username, password) VALUES ($1, $2)', [username, dbString], function (err, result) {
+   pool.query('INSERT INTO tuser (username, password) VALUES ($1, $2)', [username, dbString], function (err, result) {
       if (err) {
           res.status(500).send(err.toString());
       } else {
@@ -109,7 +75,7 @@ app.post('/login', function (req, res) {
    var username = req.body.username;
    var password = req.body.password;
    
-   pool.query('SELECT * FROM "user" WHERE username = $1', [username], function (err, result) {
+   pool.query('SELECT * FROM tuser WHERE username = $1', [username], function (err, result) {
       if (err) {
           res.status(500).send(err.toString());
       } else {
@@ -141,7 +107,7 @@ app.post('/login', function (req, res) {
 app.get('/check-login', function (req, res) {
    if (req.session && req.session.auth && req.session.auth.userId) {
        // Load the user object
-       pool.query('SELECT * FROM "user" WHERE id = $1', [req.session.auth.userId], function (err, result) {
+       pool.query('SELECT * FROM tuser WHERE id = $1', [req.session.auth.userId], function (err, result) {
            if (err) {
               res.status(500).send(err.toString());
            } else {
@@ -163,7 +129,7 @@ var pool = new Pool(config);
 app.get('/get-articles', function (req, res) {
    // make a select request
    // return a response with the results
-   pool.query('SELECT * FROM article ORDER BY date DESC', function (err, result) {
+   pool.query('SELECT * FROM articles ORDER BY date DESC', function (err, result) {
       if (err) {
           res.status(500).send(err.toString());
       } else {
@@ -175,7 +141,7 @@ app.get('/get-articles', function (req, res) {
 app.get('/get-comments/:articleName', function (req, res) {
    // make a select request
    // return a response with the results
-   pool.query('SELECT comment.*, "user".username FROM article, comment, "user" WHERE article.title = $1 AND article.id = comment.article_id AND comment.user_id = "user".id ORDER BY comment.timestamp DESC', [req.params.articleName], function (err, result) {
+   pool.query('SELECT comments.*, tuser.username FROM articles, comments, tuser WHERE articles.title = $1 AND articles.id = comments.article_id AND comments.user_id = tuser.id ORDER BY comments.timestamp DESC', [req.params.articleName], function (err, result) {
       if (err) {
           res.status(500).send(err.toString());
       } else {
@@ -188,7 +154,7 @@ app.post('/submit-comment/:articleName', function (req, res) {
    // Check if the user is logged in
     if (req.session && req.session.auth && req.session.auth.userId) {
         // First check if the article exists and get the article-id
-        pool.query('SELECT * from article where title = $1', [req.params.articleName], function (err, result) {
+        pool.query('SELECT * from articles where title = $1', [req.params.articleName], function (err, result) {
             if (err) {
                 res.status(500).send(err.toString());
             } else {
@@ -198,13 +164,13 @@ app.post('/submit-comment/:articleName', function (req, res) {
                     var articleId = result.rows[0].id;
                     // Now insert the right comment for this article
                     pool.query(
-                        "INSERT INTO comment (comment, article_id, user_id) VALUES ($1, $2, $3)",
+                        "INSERT INTO comments (comment, article_id, user_id) VALUES ($1, $2, $3)",
                         [req.body.comment, articleId, req.session.auth.userId],
                         function (err, result) {
                             if (err) {
                                 res.status(500).send(err.toString());
                             } else {
-                                res.status(200).send('Comment inserted!')
+                                res.status(200).send('Comment inserted!');
                             }
                         });
                 }
@@ -217,7 +183,7 @@ app.post('/submit-comment/:articleName', function (req, res) {
 
 app.get('/articles/:articleName', function (req, res) {
   // SELECT * FROM article WHERE title = '\'; DELETE WHERE a = \'asdf'
-  pool.query("SELECT * FROM article WHERE title = $1", [req.params.articleName], function (err, result) {
+  pool.query("SELECT * FROM articles WHERE title = $1", [req.params.articleName], function (err, result) {
     if (err) {
         res.status(500).send(err.toString());
     } else {
