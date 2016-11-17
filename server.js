@@ -76,10 +76,10 @@ app.get('/to', function (req, res) {
 app.get('/to2', function (req, res) {
   res.sendFile(path.join(__dirname, 't2.html'));
 });
-app.get('/ui/images/new.jpg', function (req, res) {
+/*app.get('/ui/images/new.jpg', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui','images','madi.jpg'));
   app.get('/ui/st.css', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'st.css'));
+  res.sendFile(path.join(__dirname, 'ui', 'st.css'));*/
 
 
 function hash (input, salt) {
