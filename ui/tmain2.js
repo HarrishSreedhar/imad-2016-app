@@ -1,4 +1,4 @@
-function addl()
+/*function addl()
 {
 	 var request = new XMLHttpRequest();
         
@@ -20,10 +20,40 @@ function addl()
         request.open('POST', '/create-list/', true);
         request.setRequestHeader('Content-Type', 'application/json');
        request.send(JSON.stringify({li:li}));  
-       
+     }*/
+     
+ var register = document.getElementById('a');
+    register.onclick = function () {
+        // Create a request object
+        var request = new XMLHttpRequest();
         
+        // Capture the response and store it in a variable
+        request.onreadystatechange = function () {
+          if (request.readyState === XMLHttpRequest.DONE) {
+              // Take some action
+              if (request.status === 200) {
+                  alert('User created successfully');
+                  register.value = 'added!';
+              } else {
+                  alert('Could not register the user');
+                  register.value = 'add';
+              }
+          }
+        };
+        
+        // Make the request
+        var username = document.getElementById('username').value;
+        //var password = document.getElementById('password').value;
+        console.log(username);
+        console.log(password);
+        request.open('POST', '/clist', true);
+        request.setRequestHeader('Content-Type', 'application/json');
+        request.send(JSON.stringify({username: username}));  
+        register.value = 'Registering...';
     
-    }
+    };
+
+
 
 
 var close = document.getElementsByClassName("close");
