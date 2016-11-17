@@ -71,6 +71,21 @@ app.post('/create-user', function (req, res) {
    });
 });
 
+app.post('/create-list', function (req, res) {
+   // username, password
+   // {"username": "tanmai", "password": "password"}
+   // JSON
+   var item = req.body.item;
+   var dbString = hash(password, salt);
+   pool.query('INSERT INTO list (id,list) VALUES ($1, $2)', [req.session.auth.userId],item, function (err, result) {
+      if (err) {
+          res.status(500).send(err.toString());
+      } else {
+          res.send('list created created:');
+      }
+   });
+});
+
 app.post('/login', function (req, res) {
    var username = req.body.username;
    var password = req.body.password;
