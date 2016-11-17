@@ -15,11 +15,11 @@ function addl()
               }
           }
         };
-        
-       var li = document.getElementById('in').value;
         request.open('POST', '/create-list/', true);
-        request.setRequestHeader('Content-Type', 'application/json');
-        request.send(JSON.stringify({li:li}));  
+     //  var li = document.getElementById('in').value;
+        //request.open('POST', '/create-list/', true);
+        //request.setRequestHeader('Content-Type', 'application/json');
+       // request.send(JSON.stringify({li:li}));  
        
         
     
