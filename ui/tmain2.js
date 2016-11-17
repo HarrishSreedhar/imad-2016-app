@@ -21,7 +21,8 @@
         request.setRequestHeader('Content-Type', 'application/json');
        request.send(JSON.stringify({li:li}));  
      }*/
-     function addl()
+     
+     function addl(){
  var register = document.getElementById('a');
    
         // Create a request object
@@ -51,7 +52,7 @@
         request.send(JSON.stringify({username: username}));  
         register.value = 'Registering...';
     
-    };
+    }
 
 
 
