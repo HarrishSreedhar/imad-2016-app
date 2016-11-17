@@ -1,13 +1,14 @@
 
 function loadLoginForm () {
     var loginHtml = `
+    <h2 id="r" >
         <h3>Login/Register to unlock awesome features</h3>
        Username:<input type="text" id="username" placeholder="username" /><br><br>
         Password:<input type="password" id="password" />
         <br/><br/>
         <input type="submit" id="login_btn" value="Login" />
         <input type="submit" id="register_btn" value="Register" />
-        `;
+    </h2>    `;
     document.getElementById('login_area').innerHTML = loginHtml;
     
     // Submit username/password to login
@@ -84,8 +85,8 @@ function loadLoggedInUser (username) {
     var loginArea = document.getElementById('login_area');
     loginArea.innerHTML = `
         <h3> Hi <i>${username}</i></h3>
-        <a href="/logout">Logout</a>
-        <a href="/list">Go-To-List</a>
+        <a href="/logout"><b>Logout</b></a>
+        <a href="/list"><b><h3>Go-To-List</h3></b></a>
     `;
 }
 
