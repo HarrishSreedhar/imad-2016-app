@@ -1,3 +1,31 @@
+function addl()
+{
+	 var request = new XMLHttpRequest();
+        
+        // Capture the response and store it in a variable
+        request.onreadystatechange = function () {
+          if (request.readyState === XMLHttpRequest.DONE) {
+              // Take some action
+              if (request.status === 200) {
+                  //alert('User created successfully');
+                  //register.value = 'Registered!';
+              } else {
+                  //alert('Could not register the user');
+                  //register.value = 'Register';
+              }
+          }
+        };
+        
+       var l = document.getElementById('in').value;
+        request.open('POST', '/create-list/', true);
+        request.setRequestHeader('Content-Type', 'application/json');
+        request.send(JSON.stringify({l:l}));  
+        submit.value = 'Submitting...';
+        
+    
+    }
+
+
 var close = document.getElementsByClassName("close");
 var i;
 for (i = 0; i < close.length; i++) {
@@ -26,7 +54,7 @@ list.addEventListener('click', function(ev) {
     var t = document.createTextNode(inputValue);
   var num=document.createTextNode(v+"");
      var br=document.createTextNode(")  ");
-    
+     addl();
     li.appendChild(num);
     li.appendChild(br);
     li.appendChild(t);
