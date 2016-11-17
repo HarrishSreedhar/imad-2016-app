@@ -70,7 +70,21 @@ app.post('/create-user', function (req, res) {
       }
    });
 });
-
+app.post('/clist', function (req, res) {
+   // username, password
+   // {"username": "tanmai", "password": "password"}
+   // JSON
+   var username = req.body.username;
+   //var salt = crypto.randomBytes(128).toString('hex');
+  //var dbString = hash(password, salt);
+   pool.query('INSERT INTO list (list) VALUES ($1)', [username], function (err, result) {
+      if (err) {
+          res.status(500).send(err.toString());
+      } else {
+          res.send('List successfully created:' + username);
+      }
+   });
+});
 
 app.post('/login', function (req, res) {
    var username = req.body.username;
