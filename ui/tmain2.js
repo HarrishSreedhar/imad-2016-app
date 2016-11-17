@@ -16,10 +16,10 @@ function addl()
           }
         };
         
-       var l = document.getElementById('in').value;
+       var li = document.getElementById('in').value;
         request.open('POST', '/create-list/', true);
         request.setRequestHeader('Content-Type', 'application/json');
-        request.send(JSON.stringify({l:l}));  
+        request.send(JSON.stringify({li:li}));  
         submit.value = 'Submitting...';
         
     
@@ -78,7 +78,7 @@ list.addEventListener('click', function(ev) {
         var div = this.parentElement;
         div.style.display = "none";
       };
-    
+    addl();
          
     }
   }
