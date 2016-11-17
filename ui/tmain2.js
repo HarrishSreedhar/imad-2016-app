@@ -21,9 +21,9 @@
         request.setRequestHeader('Content-Type', 'application/json');
        request.send(JSON.stringify({li:li}));  
      }*/
-     
+     function addl()
  var register = document.getElementById('a');
-    register.onclick = function () {
+   
         // Create a request object
         var request = new XMLHttpRequest();
         
