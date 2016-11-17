@@ -54,7 +54,7 @@ list.addEventListener('click', function(ev) {
     var t = document.createTextNode(inputValue);
   var num=document.createTextNode(v+"");
      var br=document.createTextNode(")  ");
-     addl();
+    
     li.appendChild(num);
     li.appendChild(br);
     li.appendChild(t);
@@ -77,6 +77,8 @@ list.addEventListener('click', function(ev) {
       close[i].onclick = function() {
         var div = this.parentElement;
         div.style.display = "none";
-      }
+      };
+    
+         addl();
     }
   }
