@@ -11,7 +11,7 @@ for (i = 0; i < close.length; i++) {
 var list = document.querySelector('ul');
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
+    ev.target.classList.toggle('.checked');
   }
 }, false);
 
@@ -25,7 +25,7 @@ list.addEventListener('click', function(ev) {
     var inputValue = document.getElementById("in").value;
     var t = document.createTextNode(inputValue);
   var num=document.createTextNode(v+"");
-     var br=document.createTextNode(")  ")
+     var br=document.createTextNode(")  ");
     
     li.appendChild(num);
     li.appendChild(br);
