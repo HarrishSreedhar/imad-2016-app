@@ -35,7 +35,7 @@ ul li:hover {
 }
 
 /* When clicked on, add a background color and strike out text */
-ul .checked {
+ .checked {
   background: #111;
   color: #fff;
   text-decoration: line-through;
