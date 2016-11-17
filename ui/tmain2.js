@@ -7,7 +7,7 @@ function addl()
           if (request.readyState === XMLHttpRequest.DONE) {
               // Take some action
               if (request.status === 200) {
-                  //alert('User created successfully');
+                  alert('List created successfully');
                   //register.value = 'Registered!';
               } else {
                   //alert('Could not register the user');
@@ -20,7 +20,7 @@ function addl()
         request.open('POST', '/create-list/', true);
         request.setRequestHeader('Content-Type', 'application/json');
         request.send(JSON.stringify({li:li}));  
-        submit.value = 'Submitting...';
+       
         
     
     }
@@ -78,7 +78,9 @@ list.addEventListener('click', function(ev) {
         var div = this.parentElement;
         div.style.display = "none";
       };
-    addl();
+   
          
     }
   }
+  
+addl();
