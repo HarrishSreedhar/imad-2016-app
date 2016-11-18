@@ -74,7 +74,8 @@ app.post('/clist', function (req, res) {
    // username, password
    // {"username": "tanmai", "password": "password"}
    // JSON
-   var li = req.body.li;
+   var li = req.body.data;
+   alert(li);
    //var salt = crypto.randomBytes(128).toString('hex');
   //var dbString = hash(password, salt);
    pool.query('INSERT INTO new (data) VALUES ($1)', [li], function (err, result) {
