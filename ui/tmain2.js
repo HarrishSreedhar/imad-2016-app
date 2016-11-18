@@ -20,7 +20,7 @@ function addb()
       request.open('POST', '/clist', true);
         request.setRequestHeader('Content-Type', 'application/json');
         alert(li);
-       request.send(JSON.stringify({lis:li}));  
+       request.send(JSON.stringify(li));  
      }
      
 /*    // function addl(){
