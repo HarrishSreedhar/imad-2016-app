@@ -19,8 +19,8 @@ function addb()
      var li = document.getElementById('in').value;
       request.open('POST', '/clist', true);
         request.setRequestHeader('Content-Type', 'application/json');
-        alert(li);
-       request.send(JSON.stringify(li));  
+        alert(li); console.log(li);
+       request.send(JSON.stringify({li:li}));  
      }
      
 /*    // function addl(){
