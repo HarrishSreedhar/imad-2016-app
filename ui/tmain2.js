@@ -15,9 +15,9 @@ function addl()
               }
           }
         };
-       // request.open('POST', '/create-list/', true);
+       // request.open('POST', '/clist/', true);
      var li = document.getElementById('in').value;
-        request.open('POST', '/create-list/', true);
+        request.open('POST', '/clist/', true);
         request.setRequestHeader('Content-Type', 'application/json');
        request.send(JSON.stringify({li:li}));  
      }
