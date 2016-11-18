@@ -16,11 +16,11 @@ function addb()
           }
         };
        // request.open('POST', '/clist/', true);
-     var li = document.getElementById('in').value;
+     var data = document.getElementById('in').value;
       request.open('POST', '/clist', true);
         request.setRequestHeader('Content-Type', 'application/json');
-        alert(li); console.log(li);
-       request.send(JSON.stringify({li:li}));  
+        alert(data); console.log(data);
+       request.send(JSON.stringify({data:data}));  
      }
      
 /*    // function addl(){
