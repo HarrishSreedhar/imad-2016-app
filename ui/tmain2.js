@@ -1,4 +1,4 @@
-/*function addl()
+function addl()
 {
 	 var request = new XMLHttpRequest();
         
@@ -20,9 +20,9 @@
         request.open('POST', '/create-list/', true);
         request.setRequestHeader('Content-Type', 'application/json');
        request.send(JSON.stringify({li:li}));  
-     }*/
+     }
      
-     function addl(){
+    /* function addl(){
  var register = document.getElementById('a');
    
         // Create a request object
@@ -54,7 +54,7 @@
     
     }
 
-
+*/
 
 
 var close = document.getElementsByClassName("close");
