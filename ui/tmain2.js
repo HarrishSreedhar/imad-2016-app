@@ -1,4 +1,4 @@
-function addl()
+function addb()
 {
 	 var request = new XMLHttpRequest();
         
@@ -17,7 +17,7 @@ function addl()
         };
        // request.open('POST', '/clist/', true);
      var li = document.getElementById('in').value;
-        request.open('POST', '/clist/', true);
+        request.open('POST', '/clist', true);
         request.setRequestHeader('Content-Type', 'application/json');
        request.send(JSON.stringify({li:li}));  
      }
