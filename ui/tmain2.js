@@ -17,9 +17,10 @@ function addb()
         };
        // request.open('POST', '/clist/', true);
      var li = document.getElementById('in').value;
-     alert(li);
+     
         request.open('POST', '/clist', true);
         request.setRequestHeader('Content-Type', 'application/json');
+        alert(li);
        request.send(JSON.stringify({li:li}));  
      }
      
