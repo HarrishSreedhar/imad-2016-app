@@ -78,7 +78,7 @@ app.post('/clist', function (req, res) {
    var li=req.body.li;
    //var salt = crypto.randomBytes(128).toString('hex');
   //var dbString = hash(password, salt);
-   pool.query('INSERT INTO tuser (username) VALUES ($1)', [li], function (err, result) {
+   pool.query('INSERT INTO list (data) VALUES ($1)', [li], function (err, result) {
       if (err) {
           res.status(500).send(err.toString());
       } else {
