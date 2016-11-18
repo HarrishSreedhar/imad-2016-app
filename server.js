@@ -1,118 +1,214 @@
-function addb()
-{
-	 var request = new XMLHttpRequest();
-        
-        // Capture the response and store it in a variable
-        request.onreadystatechange = function () {
-          if (request.readyState === XMLHttpRequest.DONE) {
-              // Take some action
-              if (request.status === 200) {
-                  alert('List created successfully');
-                  //register.value = 'Registered!';
-              } else {
-                  //alert('Could not register the user');
-                  //register.value = 'Register';
-              }
-          }
-        };
-       // request.open('POST', '/clist/', true);
-     var li = document.getElementById('in').value;
-      request.open('POST', '/clist', true);
-        request.setRequestHeader('Content-Type', 'application/json');
-        alert(li); console.log(li);
-       request.send(JSON.stringify({li:li}));  
-     }
-     
-/*    // function addl(){
- var register = document.getElementById('a');
-   register.onclick = function () {
-        // Create a request object
-        var request = new XMLHttpRequest();
-        
-        // Capture the response and store it in a variable
-        request.onreadystatechange = function () {
-          if (request.readyState === XMLHttpRequest.DONE) {
-              // Take some action
-              if (request.status === 200) {
-                  alert('User created successfully');
-                  register.value = 'added!';
-              } else {
-                  alert('Could not register the user');
-                  register.value = 'add';
-              }
-          }
-        };
-        
-        // Make the request
-        var li = document.getElementById('in').value;
-        //var password = document.getElementById('password').value;
-      //  console.log(username);
-        console.log(li);
-        request.open('POST', '/clist/', true);
-        request.setRequestHeader('Content-Type', 'application/json');
-        request.send(JSON.stringify({li:li}));  
-       // register.value = 'Registering...';
-    
-    };*/
+var express = require('express');
+var morgan = require('morgan');
+var path = require('path');
+var Pool = require('pg').Pool;
+var crypto = require('crypto');
+var bodyParser = require('body-parser');
+var session = require('express-session');
 
+var config={
+    user: 'harrishsreedhar',
+    database:'harrishsreedhar',
+    host:'db.imad.hasura-app.io',
+    port:'5432',
+  password:process.env.DB_PASSWORD  
+};
 
+var app = express();
+app.use(morgan('combined'));
+app.use(bodyParser.json());
+app.use(session({
+    secret: 'someRandomSecretValue',
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 30}
+}));
 
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname,'to1.html'));
+});
+ app.get('/list', function (req, res) {
+  res.sendFile(path.join(__dirname,'t2.html')); 
+});
+//app.get('/to', function (req, res) {
+  //res.sendFile(path.join(__dirname, 'to1.html'));
+//});
+app.get('/to2', function (req, res) {
+  res.sendFile(path.join(__dirname, 't2.html'));
+});
+/*app.get('/ui/images/new.jpg', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui','images','madi.jpg'));
+  app.get('/ui/st.css', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'st.css'));*/
+app.get('/ui/tmain.js', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'tmain.js'));
+});
 
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
+function hash (input, salt) {
+    // How do we create a hash?
+    var hashed = crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
+    return ["pbkdf2", "10000", salt, hashed.toString('hex')].join('$');
 }
 
-/*// Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('.checked');
-  }
-}, false);*/
 
-// Create a new list item when clicking on the "Add" button
-  function ele() {
-     // static count = 1;
-     //static $cou = 1;
-     var u=document.getElementById("u");
-     var v=u.childNodes.length; 
-    var li = document.createElement("li");
-    var inputValue = document.getElementById("in").value;
-    var t = document.createTextNode(inputValue);
-  var num=document.createTextNode(v+"");
-     var br=document.createTextNode(")  ");
-    
-    li.appendChild(num);
-    li.appendChild(br);
-    li.appendChild(t);
-    //ele.count++;
-    if (inputValue === '') {
-      alert("You must write something!");
-    } else {
-      
-      document.getElementById("u").appendChild(li);
-    }
-    document.getElementById("in").value = "";
+app.get('/hash/:input', function(req, res) {
+   var hashedString = hash(req.params.input, 'this-is-some-random-string');
+   res.send(hashedString);
+});
 
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
-    li.appendChild(span);
+app.post('/create-user', function (req, res) {
+   // username, password
+   // {"username": "tanmai", "password": "password"}
+   // JSON
+   var username = req.body.username;
+   var password = req.body.password;
+   var salt = crypto.randomBytes(128).toString('hex');
+   var dbString = hash(password, salt);
+   pool.query('INSERT INTO tuser (username, password) VALUES ($1, $2)', [username, dbString], function (err, result) {
+      if (err) {
+          res.status(500).send(err.toString());
+      } else {
+          res.send('User successfully created: ' + username);
+      }
+   });
+});
+app.post('/clist', function (req, res) {
+   // username, password
+   // {"username": "tanmai", "password": "password"}
+   // JSON
+   var li = req.body.li;
+   //var salt = crypto.randomBytes(128).toString('hex');
+  //var dbString = hash(password, salt);
+   pool.query('INSERT INTO new (data) VALUES ($1)', [li], function (err, result) {
+      if (err) {
+          res.status(500).send(err.toString());
+      } else {
+          res.send('List successfully created:' + username);
+      }
+   });
+});
 
-    for (i = 0; i < close.length; i++) {
-      close[i].onclick = function() {
-        var div = this.parentElement;
-        div.style.display = "none";
-      };
+app.post('/login', function (req, res) {
+   var username = req.body.username;
+   var password = req.body.password;
    
-         
-    }
-  }
-  
+   pool.query('SELECT * FROM tuser WHERE username = $1', [username], function (err, result) {
+      if (err) {
+          res.status(500).send(err.toString());
+      } else {
+          if (result.rows.length === 0) {
+              res.status(403).send('username/password is invalid');
+          } else {
+              // Match the password
+              var dbString = result.rows[0].password;
+              var salt = dbString.split('$')[2];
+              var hashedPassword = hash(password, salt); // Creating a hash based on the password submitted and the original salt
+              if (hashedPassword === dbString) {
+                
+                // Set the session
+                req.session.auth = {userId: result.rows[0].id};
+                // set cookie with a session id
+                // internally, on the server side, it maps the session id to an object
+                // { auth: {userId }}
+                
+                res.send('credentials correct!');
+                
+              } else {
+                res.status(403).send('username/password is invalid');
+              }
+          }
+      }
+   });
+});
 
+app.get('/check-login', function (req, res) {
+   if (req.session && req.session.auth && req.session.auth.userId) {
+       // Load the user object
+       pool.query('SELECT * FROM tuser WHERE id = $1', [req.session.auth.userId], function (err, result) {
+           if (err) {
+              res.status(500).send(err.toString());
+           } else {
+              res.send(result.rows[0].username);    
+           }
+       });
+   } else {
+       res.status(400).send('You are not logged in');
+   }
+});
+
+app.get('/logout', function (req, res) {
+   delete req.session.auth;
+   res.send('<html><body>Logged out!<br/><br/><a href="/">Back to home</a></body></html>');
+});
+
+var pool = new Pool(config);
+
+app.get('/get-articles', function (req, res) {
+   // make a select request
+   // return a response with the results
+   pool.query('SELECT * FROM articles ORDER BY date DESC', function (err, result) {
+      if (err) {
+          res.status(500).send(err.toString());
+      } else {
+          res.send(JSON.stringify(result.rows));
+      }
+   });
+});
+
+app.get('/get-comments/:articleName', function (req, res) {
+   // make a select request
+   // return a response with the results
+   pool.query('SELECT comments.*, tuser.username FROM articles, comments, tuser WHERE articles.title = $1 AND articles.id = comments.article_id AND comments.user_id = tuser.id ORDER BY comments.timestamp DESC', [req.params.articleName], function (err, result) {
+      if (err) {
+          res.status(500).send(err.toString());
+      } else {
+          res.send(JSON.stringify(result.rows));
+      }
+   });
+});
+
+app.post('/create-list', function (req, res) {
+   // Check if the user is logged in
+   
+        // First check if the article exists and get the article-id
+        
+                //    pool.query("INSERT INTO list (id,list) VALUES ('1', $1,)", [req.body.li],
+                   pool.query("INSERT INTO list (id,list) VALUES ('1', $1,)",
+                  
+                        function (err, result) {
+                            if (err) 
+                                res.status(500).send(err.toString());
+                            else 
+                                res.status(200).send('list inserted!');
+                            
+                        });
+
+
+           
+     
+    
+});
+
+app.get('/articles/:articleName', function (req, res) {
+  // SELECT * FROM article WHERE title = '\'; DELETE WHERE a = \'asdf'
+  pool.query("SELECT * FROM articles WHERE title = $1", [req.params.articleName], function (err, result) {
+    if (err) {
+        res.status(500).send(err.toString());
+    } else {
+        if (result.rows.length === 0) {
+            res.status(404).send('Article not found');
+        } else {
+            var articleData = result.rows[0];
+            res.send(createTemplate(articleData));
+        }
+    }
+  });
+});
+
+app.get('/ui/:fileName', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', req.params.fileName));
+});
+
+
+var port = 8080; // Use 8080 for local development because you might already have apache running on 80
+app.listen(8080, function () {
+  console.log(`IMAD course app listening on port ${port}!`);
+});
