@@ -1,4 +1,4 @@
-function addb()
+/*function addb()
 {
 	 var request = new XMLHttpRequest();
         
@@ -20,11 +20,11 @@ function addb()
         request.open('POST', '/clist', true);
         request.setRequestHeader('Content-Type', 'application/json');
        request.send(JSON.stringify({li:li}));  
-     }
+     }*/
      
-    /* function addl(){
+    // function addl(){
  var register = document.getElementById('a');
-   
+   register.onclick = function () {
         // Create a request object
         var request = new XMLHttpRequest();
         
@@ -43,18 +43,18 @@ function addb()
         };
         
         // Make the request
-        var username = document.getElementById('username').value;
+        var li = document.getElementById('in').value;
         //var password = document.getElementById('password').value;
-        console.log(username);
-        console.log(password);
+      //  console.log(username);
+        console.log(li);
         request.open('POST', '/clist/', true);
         request.setRequestHeader('Content-Type', 'application/json');
-        request.send(JSON.stringify({username: username}));  
-        register.value = 'Registering...';
+        request.send(JSON.stringify({li:li}));  
+       // register.value = 'Registering...';
     
-    }
+    };
 
-*/
+
 
 
 var close = document.getElementsByClassName("close");
