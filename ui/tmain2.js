@@ -1,4 +1,4 @@
-/*function addb()
+function addb()
 {
 	 var request = new XMLHttpRequest();
         
@@ -20,9 +20,9 @@
         request.open('POST', '/clist', true);
         request.setRequestHeader('Content-Type', 'application/json');
        request.send(JSON.stringify({li:li}));  
-     }*/
+     }
      
-    // function addl(){
+/*    // function addl(){
  var register = document.getElementById('a');
    register.onclick = function () {
         // Create a request object
@@ -52,7 +52,7 @@
         request.send(JSON.stringify({li:li}));  
        // register.value = 'Registering...';
     
-    };
+    };*/
 
 
 
