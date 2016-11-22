@@ -5,7 +5,7 @@ var Pool = require('pg').Pool;
 var crypto = require('crypto');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
+var na;
 var config={
     user: 'harrishsreedhar',
     database:'harrishsreedhar',
@@ -26,6 +26,7 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname,'to1.html'));
 });
  app.get('/list', function (req, res) {
+      na=req.query.uid;
   res.sendFile(path.join(__dirname,'t2.html')); 
 });
 //app.get('/to', function (req, res) {
