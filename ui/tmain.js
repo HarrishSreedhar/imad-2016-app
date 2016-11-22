@@ -86,7 +86,7 @@ function loadLoggedInUser (username) {
     loginArea.innerHTML = `
         <h3> Hi <i>${username}</i></h3>
         <a href="/logout"><b>Logout</b></a>
-        <a href="/list"><b><h3>Go-To-List</h3></b></a>
+        <a href="/list?uid="+username><b><h3>Go-To-List</h3></b></a>
     `;
 }
 
