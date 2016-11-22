@@ -83,7 +83,7 @@ app.post('/clist', function (req, res) {
              uname=result.rows[0].username;    
            }
        });*/
-       pool.query('INSERT INTO list (id,data) VALUES ($1,$2)', [req.session.auth.userId,li], function (err, result) {
+       pool.query('INSERT INTO list (id,data) VALUES ($1,$2)', [na,li], function (err, result) {
       if (err) {
           res.status(500).send(err.toString());
       } else {
