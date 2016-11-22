@@ -64,7 +64,7 @@ for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
     var div = this.parentElement;
     div.style.display = "none";
-  }
+  };
 }
 
 /*// Add a "checked" symbol when clicking on a list item
@@ -114,5 +114,11 @@ list.addEventListener('click', function(ev) {
          
     }
   }
-  
-
+  function loadLogin() {
+      username=req.query.uid;
+    var loginArea = document.getElementById('login_area');
+    loginArea.innerHTML = `
+        <h3> Hi <i>${username}</i></h3>
+        `;
+}
+loadLogin();
