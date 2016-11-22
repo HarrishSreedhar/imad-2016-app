@@ -83,7 +83,7 @@ app.post('/clist', function (req, res) {
              uname=result.rows[0].username;    
            }
        });*/
-       pool.query('INSERT INTO list (id,data) VALUES ($1,$2)', [na,li], function (err, result) {
+       pool.query('INSERT INTO list (id,data) VALUES ($1,$2)', [req.session.auth.userId,li], function (err, result) {
       if (err) {
           res.status(500).send(err.toString());
       } else {
@@ -193,7 +193,7 @@ app.post('/create-list', function (req, res) {
     
 });
 
-app.get('/articles/:articleName', function (req, res) {
+/*app.get('/articles/:articleName', function (req, res) {
   // SELECT * FROM article WHERE title = '\'; DELETE WHERE a = \'asdf'
   pool.query("SELECT * FROM articles WHERE title = $1", [req.params.articleName], function (err, result) {
     if (err) {
@@ -208,7 +208,7 @@ app.get('/articles/:articleName', function (req, res) {
     }
   });
 });
-
+*/
 app.get('/ui/:fileName', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', req.params.fileName));
 });
