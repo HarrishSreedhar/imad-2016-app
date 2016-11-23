@@ -1,11 +1,7 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
-var Pool = require('pg').Pool;
-var crypto = require('crypto');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var na;
+var Pool = require('pg').Pool
 var config={
     user: 'harrishsreedhar',
     database:'harrishsreedhar',
@@ -13,216 +9,172 @@ var config={
     port:'5432',
   password:process.env.DB_PASSWORD  
 };
-
 var app = express();
 app.use(morgan('combined'));
-//app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+/*var articles={
+   'article-one':{
+    title:"Article one",
+    heading:"article-one",
+    date:"sept 3243,34643",
+    content:` <p>
+            This is Article-one...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
+            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
+            fgbhlfgmhjbfjmflmhlfjlfufrlg
+            
+        </p>
+                <p>
+            This is Article-one...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
+            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
+            fgbhlfgmhjbfjmflmhlfjlfufrlg
+            
+        </p>
+       <p>
+            This is Article-one...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
+            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
+            fgbhlfgmhjbfjmflmhlfjlfufrlg
+            </p>`
+    
+},
+  'article-two':{
+       title:"Article 2222",
+    heading:"article-two",
+    date:"oct,3rd",
+    content:` <p>
+            This is Article-two...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
+            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
+            fgbhlfgmhjbfjmflmhlfjlfufrlg
+            
+        </p>
+                <p>
+            This is Article-two...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
+            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
+            fgbhlfgmhjbfjmflmhlfjlfufrlg
+            
+        </p>
+       <p>
+            This is Article-two...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
+            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
+            fgbhlfgmhjbfjmflmhlfjlfufrlg
+            </p>`
+    
+  },
+    'article-three':{
+         title:"Article three",
+    heading:"article-3",
+    date:"sept 34",
+    content:`
+    <p>
+            This is Article-3...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
+            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
+            fgbhlfgmhjbfjmflmhlfjlfufrlg
+            
+        </p>
+                <p>
+            This is Article-3...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
+            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
+            fgbhlfgmhjbfjmflmhlfjlfufrlg
+            
+        </p>
+       <p>
+            This is Article-3...Thi was created by me....is this even bearable??dgjktgdifgjnetkehrthervtnvrkjrkvtrkjvtr
+            rbvrgrknfbgrftbfrtjmrtfhfkhfbhjfh.bfh
+            fgbhlfgmhjbfjmflmhlfjlfufrlg
+            </p>`
+    
+    }
+};*/
+function createtemplate(data){
+    var title=data.title;
+    var heading=data.heading;
+    var date=data.date;
+    var content=data.content;
+var htmltemplate=`<html>
+    <head>
+     <link rel="stylesheet" type="text/css" href="/ui/style.css">
+        <title>${title}</title>
+        <meta name="viewport" content="width-device-width, initial scale=1" />
 
-app.use(session({
-    secret: 'someRandomSecretValue',
-    cookie: { maxAge: 1000 * 60 * 60 * 24 * 30}
-}));
+    </head>
+    <body>
+        <div class="container">
+       <div>
+          <h3>
+           ${heading}<hr>
+        </h3>
+    </div>
+        <div>
+            <h2>
+        ${date.toDateString()}
+         </h2>
+         </div>   
+      ${content}
+            
+        </p>
+        </div>
+    </body>
+</html>`
+;
+return htmltemplate;    
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname,'to1.html'));
-});
- app.get('/list', function (req, res) {
-      na=req.query.uid;
-  res.sendFile(path.join(__dirname,'t2.html')); 
-});
-//app.get('/to', function (req, res) {
-  //res.sendFile(path.join(__dirname, 'to1.html'));
-//});
-app.get('/to2', function (req, res) {
-  res.sendFile(path.join(__dirname, 't2.html'));
-});
-/*app.get('/ui/images/new.jpg', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui','images','madi.jpg'));
-  app.get('/ui/st.css', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'st.css'));*/
-app.get('/ui/tmain.js', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'tmain.js'));
-});
-
-function hash (input, salt) {
-    // How do we create a hash?
-    var hashed = crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
-    return ["pbkdf2", "10000", salt, hashed.toString('hex')].join('$');
 }
-
-
-app.get('/hash/:input', function(req, res) {
-   var hashedString = hash(req.params.input, 'this-is-some-random-string');
-   res.send(hashedString);
-});
-
-app.post('/create-user', function (req, res) {
-   // username, password
-   // {"username": "tanmai", "password": "password"}
-   // JSON
-   na=req.body.username;
-   var username = req.body.username;
-   var password = req.body.password;
-   var salt = crypto.randomBytes(128).toString('hex');
-   var dbString = hash(password, salt);
-   pool.query('INSERT INTO tuser (username, password) VALUES ($1, $2)', [username, dbString], function (err, result) {
-      if (err) {
-          res.status(500).send('Try another username');
-      } else {
-          res.send('User successfully created: ' + username);
-      }
-   });
-   /* pool.query('INSERT INTO list (id) VALUES ($1)', [req.session.auth.userId], function (err, result) {
-         if (err) {
-          res.status(500).send('name exists');
-      } else {
-          res.send('User id in DB: ');
-      }
-});*/
-app.post('/clist', function (req, res) {
-   // username, password
-   // {"username": "tanmai", "password": "password"}
-   // JSON
-   var li = req.body.data;var uname;
-  /* pool.query('SELECT * FROM tuser WHERE id = $1', [req.session.auth.userId], function (err, result) {
-           if (err) {
-              res.status(500).send(err.toString());
-           } else {
-             uname=result.rows[0].username;    
-           }
-       });*/
-      pool.query('INSERT INTO list (data) where id=($1) VALUES ($2)', [req.session.auth.userId,li], function (err, result) {
-      // pool.query('INSERT INTO new (data) VALUES ($1)', [li], function (err, result) {
-      if (err) {
-          res.status(500).send(err.toString());
-      } else {
-          res.status(502).send('List successfully created:');
-      }
-   });
-});
-
-app.post('/login', function (req, res) {
-   var username = req.body.username;
-   var password = req.body.password;
-   
-   pool.query('SELECT * FROM tuser WHERE username = $1', [username], function (err, result) {
-      if (err) {
-          res.status(500).send(err.toString());
-      } else {
-          if (result.rows.length === 0) {
-              res.status(403).send('username/password is invalid');
-          } else {
-              // Match the password
-              var dbString = result.rows[0].password;
-              var salt = dbString.split('$')[2];
-              var hashedPassword = hash(password, salt); // Creating a hash based on the password submitted and the original salt
-              if (hashedPassword === dbString) {
-                
-                // Set the session
-                req.session.auth = {userId: result.rows[0].id};
-                // set cookie with a session id
-                // internally, on the server side, it maps the session id to an object
-                // { auth: {userId }}
-                
-                res.send('credentials correct!');
-                
-              } else {
-                res.status(403).send('username/password is invalid');
-              }
-          }
-      }
-   });
-});
-
-app.get('/check-login', function (req, res) {
-   if (req.session && req.session.auth && req.session.auth.userId) {
-       // Load the user object
-       pool.query('SELECT * FROM tuser WHERE id = $1', [req.session.auth.userId], function (err, result) {
-           if (err) {
-              res.status(500).send(err.toString());
-           } else { na=result.rows[0].username;
-              res.send(result.rows[0].username);    
-           }
-       });
-   } else {
-       res.status(400).send('You are not logged in');
-   }
-});
-
-app.get('/logout', function (req, res) {
-   delete req.session.auth;
-   res.send('<html><body>Logged out!<br/><br/><a href="/">Back to home</a></body></html>');
-});
-
 var pool = new Pool(config);
-
-app.get('/get-articles', function (req, res) {
-   // make a select request
-   // return a response with the results
-   pool.query('SELECT * FROM articles ORDER BY date DESC', function (err, result) {
-      if (err) {
-          res.status(500).send(err.toString());
-      } else {
-          res.send(JSON.stringify(result.rows));
-      }
-   });
-});
-
-app.get('/get-comments/:articleName', function (req, res) {
-   // make a select request
-   // return a response with the results
-   pool.query('SELECT comments.*, tuser.username FROM articles, comments, tuser WHERE articles.title = $1 AND articles.id = comments.article_id AND comments.user_id = tuser.id ORDER BY comments.timestamp DESC', [req.params.articleName], function (err, result) {
-      if (err) {
-          res.status(500).send(err.toString());
-      } else {
-          res.send(JSON.stringify(result.rows));
-      }
-   });
-});
-
-app.post('/create-list', function (req, res) {
-   // Check if the user is logged in
-   
-        // First check if the article exists and get the article-id
-        
-                //    pool.query("INSERT INTO list (id,list) VALUES ('1', $1,)", [req.body.li],
-                   pool.query("INSERT INTO list (id,list) VALUES ('1', $1,)",
-                  
-                        function (err, result) {
-                            if (err) 
-                                res.status(500).send(err.toString());
-                            else 
-                                res.status(200).send('list inserted!');
-                            
-                        });
-
-
+app.get('/test',function(req,res){
+   pool.query("SELECT * FROM test",function(err,result){
+       if(err){
+           res.status(500).send(err.toString());
            
-     
+       }else{
+           res.send(JSON.stringify(result.rows));
+       }
+   });   
+});
+var counter=0;
+app.get('/counter',function(req,res){
+   counter+=1;
+   res.send(counter.toString());
+});
+app.get('/ui/madi.png', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
+});
+var names=[];
+app.get('/submit-name/',function(req,res){//URL:?name
+    var name=req.query.name;
+    names.push(name);
+    res.send(JSON.stringify(names));    
     
 });
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
+//app.get('/article-one',function(req,res){
+//res.sendFile(path.join(__dirname,'article-one.html')); 
+//});
+app.get('/articles/:articleName',function(req,res){
 
-app.get('/view-list', function (req, res) {
-  // SELECT * FROM article WHERE title = '\'; DELETE WHERE a = \'asdf'
-  pool.query("SELECT * FROM list WHERE id = $1",  [req.session.auth.userId], function (err, result) {
-    if (err) {
-        res.status(500).send(err.toString());
-    } else {
-        if (result.rows.length === 0) {
-            res.status(404).send('Article not found');
-        } else {
-            var articleData = result.rows[0];
-            res.send(JSON.stringify(result.rows));
-        }
-    }
-  });
+// pool.query("SELECT * FROM articles where title= '"+req.params.articleName+"'",function(err,result){
+  pool.query("SELECT * FROM articles where title=$1",[req.params.articleName],function(err,result){
+     if(err){
+         res.status(500).send(err.toString());
+     } else { 
+         if(result.rows.length===0)
+     {
+         res.status(404).send('Article not found');
+     } else
+     {
+         var articleData=result.rows[0];
+           res.send(createtemplate(articleData));
+     }
+     }
+ });
+  
 });
 
-app.get('/ui/:fileName', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', req.params.fileName));
+app.get('/ui/style.css', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
-
+app.get('/ui/main.js', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'main.js'));
+});
 
 var port = 8080; // Use 8080 for local development because you might already have apache running on 80
 app.listen(8080, function () {
