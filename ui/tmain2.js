@@ -87,7 +87,7 @@ for (i = 0; i < close.length; i++) {
 }
 function lo(){
 
-        onclick="lo()";
+       
         //Create a request object
         var request = new XMLHttpRequest();
     
