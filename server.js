@@ -66,7 +66,7 @@ app.post('/create-user', function (req, res) {
       } else {
           res.send('User id in DB: ');
       }
-})
+});
 });
 app.post('/clist', function (req, res) {
    // username, password
