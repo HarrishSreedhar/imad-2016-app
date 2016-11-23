@@ -25,9 +25,10 @@ function addb()
 
 
 		function del(i)
-		{ var it = document.getElementsByTagName("li");
+		{  alert("inside del");
+		    var it = document.getElementsByTagName("li");
 		  var s=it[i].value;
-		   alert(s+"deleted");
+		  // alert(s+"deleted");
 			 /*var request = new XMLHttpRequest();
 				
 				// Capture the response and store it in a variable
@@ -117,10 +118,11 @@ li.appendChild(button);*/
 
     for (i = 0; i < close.length; i++) {
       close[i].onclick = function() {
+          del(i);
         var div = this.parentElement;
         div.style.display = "none";
         alert('deleted');
-        del(i);
+        
       };
    
          
