@@ -27,8 +27,12 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname,'to1.html'));
 });
  app.get('/list', function (req, res) {
-      na=req.query.uid;
-  res.sendFile(path.join(__dirname,'t2.html')); 
+ 
+  res.sendFile(path.join(__dirname,'t2.html'));
+ });
+  app.get('/list3', function (req, res) {
+
+  res.sendFile(path.join(__dirname,'t3.html')); 
 });
 app.get('/ui/tmain.js', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'tmain.js'));
