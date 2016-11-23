@@ -19,7 +19,7 @@ function lo(){
                         
                          list += '<li>' + names[i] + '</li>';
                     }
-                    var ul = document.getElementById('l');
+                    var ul = document.getElementById('u');
                     ul.innerHTML = list;
                 }
             }
