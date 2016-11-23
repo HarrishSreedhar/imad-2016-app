@@ -19,10 +19,12 @@ function lo(){
                     var ul = document.getElementById('u');
                     for(var i = 0;i < o.length;i++){
                          var li = document.createElement("li");
+                          li.appendChild(document.createTextNode(i+1));
+                           li.appendChild(document.createTextNode(")"));
                          li.appendChild(document.createTextNode(o[i].data));
 var button = document.createElement("button");
 
-li.setAttribute("id",i);
+li.setAttribute("id",i+1);
 ul.appendChild(li);
                         
                      //    list += '<li>' +  + '</li>';
