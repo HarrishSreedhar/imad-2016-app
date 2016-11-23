@@ -40,12 +40,6 @@ var div = this.parentElement;
 /*  var ul = form.getElementsByTagName('u');
 ul = ul && ul[0];
 console.log(ul);*/
-
-
-
-
-
-// Create a new list item when clicking on the "Add" button
   function ele() {
      // static count = 1;
      //static $cou = 1;
@@ -102,7 +96,7 @@ li.appendChild(button);*/
         <h3> Hi <i>${username}</i></h3>
         `;
 }
-	function del(j)
+/*	function del(j)
 		{  alert("inside del");
 	
 		  	var ul = document.getElementById("u"); 
@@ -133,7 +127,7 @@ li.appendChild(button);*/
        
        request.send(JSON.stringify({data:s}));  
 			
-			}
+			}/*
 		
 		
 			
@@ -177,4 +171,4 @@ li.appendChild(button);*/
         request.send(null);
 };
 }*/
-loadLogin();
+
