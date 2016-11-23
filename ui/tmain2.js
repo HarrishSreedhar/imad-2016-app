@@ -25,10 +25,12 @@ function addb()
      }
 
 
-		function del()
+		function del(k)
 		{  alert("inside del");
-	
-		 // alert(k+"deleted");
+		var table = document.getElementById("u"); 
+		    var it = document.getElementsByTagName("li");
+		  var s=it[k].innerText;
+		  alert(s+"deleted");
 			 /*var request = new XMLHttpRequest();
 				
 				// Capture the response and store it in a variable
@@ -60,17 +62,13 @@ function addb()
 }
 
 
-    var close = document.getElementsByClassName("close");
+var close = document.getElementsByClassName("close");
 var i;
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
      // var ul = document.getElementById("u");
-     
 var div = this.parentElement;
     div.style.display = "none";
-   var u = document.getElementById("u"); 
-		    var it = u.getElementsByTagName("li");
-		  var s=it[i].innerText;
  //del(i);
       
   };
@@ -122,15 +120,11 @@ li.appendChild(button);*/
    
     for (i = 0; i < close.length; i++) {
       close[i].onclick = function() {
-          	
+           j=i;
         var div = this.parentElement;
         div.style.display = "none";
         alert('deleted');
-      /*  var u = document.getElementById("u"); 
-		    var it = u.getElementsByTagName("li");
-		  var s=it[i].innerText;
-           j=i;*/
-        del();
+        del(j);
       };
    
          
@@ -138,4 +132,35 @@ li.appendChild(button);*/
   }
        
 
-/*
+/*function lo(){
+       
+        //Create a request object
+        var request = new XMLHttpRequest();
+    
+        //Capture the response and store it in a variable
+        request.onreadystatechange = function()
+        {
+            if(request.readyState === XMLHttpRequest.DONE)
+            {
+                //Take some action
+                if(request.status === 200)
+                {
+                    var names = request.responseText;
+                   names=JSON.getString.data;
+                    var list = '';
+                    for(var i = 0;i < names.length;i++){
+                        
+                         list += '<li>' + names[i] + '</li>';
+                    }
+                    var ul = document.getElementById('l');
+                    ul.innerHTML = list;
+                }
+            }
+        };
+    
+         //Render the variable in the correct span
+       
+        request.open('GET','http://harrishsreedhar.imad.hasura-app.io/view-list', true);
+        request.send(null);
+};
+}*/
