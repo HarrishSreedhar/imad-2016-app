@@ -60,13 +60,13 @@ app.post('/create-user', function (req, res) {
           res.send('User successfully created: ' + username);
       }
    });
-   pool.query('INSERT INTO list (id) VALUES ($1)', [req.session.auth.userId], function (err, result) {
+  /* pool.query('INSERT INTO list (id) VALUES ($1)', [req.session.auth.userId], function (err, result) {
          if (err) {
           res.status(500).send('name exists');
       } else {
           res.send('User id in DB: ');
       }
-});
+});*/
 });
 app.post('/clist', function (req, res) {
    // username, password
@@ -144,7 +144,7 @@ app.get('/logout', function (req, res) {
 var pool = new Pool(config);
 app.get('/view-list', function (req, res) {
   // SELECT * FROM article WHERE title = '\'; DELETE WHERE a = \'asdf'
-  pool.query("SELECT * FROM list WHERE id = $1",  [req.session.auth.userId], function (err, result) {
+  pool.query("SELECT data FROM list WHERE id = $1",  [req.session.auth.userId], function (err, result) {
     if (err) {
         res.status(500).send(err.toString());
     } else {
