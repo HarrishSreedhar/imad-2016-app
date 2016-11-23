@@ -149,7 +149,7 @@ app.get('/view-list', function (req, res) {
         res.status(500).send(err.toString());
     } else {
         if (result.rows.length === 0) {
-            res.status(502).send('Article not found');
+            res.status(502).send('No Lists found');
         } else {
             var a= result.rows;
             res.send(JSON.stringify(a));
