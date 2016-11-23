@@ -25,7 +25,7 @@ function addb()
      }
 
 
-		function del()
+		function del(k)
 		{  alert("inside del");
 		    var it = document.getElementsByTagName("li");
 		  var s=it[i].value;
