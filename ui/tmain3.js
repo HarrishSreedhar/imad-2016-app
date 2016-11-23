@@ -19,24 +19,10 @@ function lo(){
                     var ul = document.getElementById('u');
                     for(var i = 0;i < o.length;i++){
                          var li = document.createElement("li");
+                           li.appendChild(document.createTextNode(i+1+""));
+    li.appendChild(document.createTextNode(")  "));
                          li.appendChild(document.createTextNode(o[i].data));
-var button = document.createElement("button");
-/*button.innerHTML = "delete";
- button.className = "b";
-li.append("  ");li.append("  ");
-li.append("  ");li.append("  ");
-li.append("  ");li.append("  ");
-li.append("  ");li.append("  ");
-li.append("  ");li.append("  ");
-li.append("  ");
-li.append("  ");
-li.append("  ");
-li.appendChild(button);*/
-var num=document.createTextNode(i+1+"");
-     var br=document.createTextNode(")  ");
-    
-    li.appendChild(num);
-    li.appendChild(br);
+
 li.setAttribute("id",i+1);
 ul.appendChild(li);
                         
