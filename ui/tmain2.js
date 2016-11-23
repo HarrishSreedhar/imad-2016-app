@@ -120,7 +120,7 @@ li.appendChild(button);*/
    
     for (i = 0; i < close.length; i++) {
       close[i].onclick = function() {
-           j=i;
+           
         var div = this.parentElement;
         div.style.display = "none";
         alert('deleted');
