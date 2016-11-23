@@ -27,9 +27,10 @@ function addb()
 
 		function del(k)
 		{  alert("inside del");
+		var table = document.getElementById("u"); 
 		    var it = document.getElementsByTagName("li");
-		  var s=it[i].value;
-		  // alert(s+"deleted");
+		  var s=it[k].innerText;
+		  alert(s+"deleted");
 			 /*var request = new XMLHttpRequest();
 				
 				// Capture the response and store it in a variable
@@ -52,13 +53,13 @@ function addb()
 			
 			}*/
 		
-			}
+		
 			
 		/*	 // Make the request---corresponding JS:
 			 'DELETE from list where user_id= $1 and id = $2',  [req.session.auth.userId],[req.query.name], function (err, result) {
 					if (err) {}
 		}*/
-
+}
 
 
 var close = document.getElementsByClassName("close");
