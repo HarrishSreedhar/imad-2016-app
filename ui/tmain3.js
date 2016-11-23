@@ -61,5 +61,4 @@ for (i = 0; i < close.length; i++) {
 var m= s.innerText ||s.textContent;
  alert(m);*/
 }
-  };
-}}
+ 
