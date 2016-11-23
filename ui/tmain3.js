@@ -26,6 +26,7 @@ var button = document.createElement("button");
 
 li.setAttribute("id",i+1);
 ul.appendChild(li);
+//var t= s.substr(s.indexOf(")") + 1);
                         
                      //    list += '<li>' +  + '</li>';
                     }
