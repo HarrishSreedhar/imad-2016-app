@@ -49,6 +49,7 @@ ul.appendChild(li);
         request.send(null);
 }
 function del(){
+     alert("inside del");
       var ul = document.getElementById('u');
     for(var i=0;i<ul.length;i++)
     {
