@@ -28,7 +28,9 @@ function addb()
 		function del(k)
 		{  alert("inside del");
 	
-		  
+		  	var ul = document.getElementById("u"); 
+		    var it = ul.getElementsByTagName("li");
+		    var s=it[k].innerText;
 		  alert(s+"deleted");
 			 /*var request = new XMLHttpRequest();
 				
@@ -120,13 +122,11 @@ li.appendChild(button);*/
     for (i = 0; i < close.length; i++) {
       close[i].onclick = function() {
            j=i;
-           	var ul = document.getElementById("u"); 
-		    var it = ul.getElementsByTagName("li");
-		    var s=it[k].innerText;
+           
         var div = this.parentElement;
         div.style.display = "none";
         alert('deleted');
-        alert(s);
+       
         del(j);
       };
    
