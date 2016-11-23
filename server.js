@@ -206,8 +206,9 @@ app.get('/view-list', function (req, res) {
         if (result.rows.length === 0) {
             res.status(404).send('Article not found');
         } else {
-            var articleData = result.rows[0];
-            res.send(JSON.stringify(result.rows));
+            for(i=0;i<result.length();i++){
+            var a = result.rows[i];
+            res.send(JSON.stringify(a));}
         }
     }
   });
