@@ -53,7 +53,7 @@ function del(){
       var ul = document.getElementById('u');
     for(var i=0;i<ul.length;i++)
     {
-        var s=document.getElementById(i);
+        var li=ul.getElementById(i);
         var button = document.createElement("button");
 button.innerHTML = "delete";
  button.className = "b";
