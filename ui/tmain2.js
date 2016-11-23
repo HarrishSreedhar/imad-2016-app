@@ -24,10 +24,10 @@ function addb()
      }
 
 
-		function del(i)
+		function del(j)
 		{var it = document.getElementsByTagName("li");
     alert("inside del");
-    var s=it[i].value;
+    var s=it[j].value;
 			 /*var request = new XMLHttpRequest();
 				
 				// Capture the response and store it in a variable
@@ -59,7 +59,7 @@ function addb()
 
 
 
-var close = document.getElementsByClassName("close");
+/*var close = document.getElementsByClassName("close");
 var i;
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
@@ -128,9 +128,7 @@ li.appendChild(button);*/
          
     }
   }
- function del(j){
-     
- }
+ 
 /*function lo(){
        
         //Create a request object
