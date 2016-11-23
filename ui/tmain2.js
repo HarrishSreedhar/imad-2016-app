@@ -22,13 +22,7 @@ function addb()
         alert(data+' is stored in database');// console.log(data);
        request.send(JSON.stringify({data:data}));  
      }
-     
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-  }
-}, false);
+
 
 
 
