@@ -48,7 +48,7 @@ ul.appendChild(li);
         request.open('GET','http://harrishsreedhar.imad.hasura-app.io/view-list', true);
         request.send(null);
 }
-/*var close = document.getElementsByClassName("b");
+var close = document.getElementsByClassName("b");
 var i;
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
@@ -60,4 +60,4 @@ for (i = 0; i < close.length; i++) {
 var m= s.innerText ||s.textContent;
  alert(m);
   };
-}*/
+}
