@@ -25,24 +25,24 @@ function addb()
      }
 
 
-		function del(k)
+		function del(j)
 		{  alert("inside del");
 	
 		  	var ul = document.getElementById("u"); 
 		    var it = ul.getElementsByTagName("li");
-		    var s=it[k].innerText;
+		    var s=it[j].innerText;
 		  alert(s+"deleted");
-			 /*var request = new XMLHttpRequest();
+			 var request = new XMLHttpRequest();
 				
 				// Capture the response and store it in a variable
 				request.onreadystatechange = function () {
 				  if (request.readyState === XMLHttpRequest.DONE) {
 					  // Take some action
 					  if (request.status === 200) {
-						  //alert('User created successfully');
+						  //alert('List deleted successfully');
 						  //register.value = 'Registered!';
 					  } else {
-						  //alert('Could not register the user');
+						  alert('Could not delete the user');
 						  //register.value = 'Register';
 					  }
 				  }
@@ -50,9 +50,13 @@ function addb()
 				
 			   
 				
-				request.open('GET', "/del-list?name="+i, true);
+				request.open('POST', "/del-list", true);
 			
-			}*/
+        request.setRequestHeader('Content-Type', 'application/json');
+       
+       request.send(JSON.stringify({data:s}));  
+			
+			}
 		
 		
 			
