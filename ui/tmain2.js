@@ -120,13 +120,14 @@ li.appendChild(button);*/
    
     for (i = 0; i < close.length; i++) {
       close[i].onclick = function() {
-          	var u = document.getElementById("u"); 
-		    var it = u.getElementsByTagName("li");
-		  var s=it[i].innerText;
-           j=i;
+          	
         var div = this.parentElement;
         div.style.display = "none";
         alert('deleted');
+        var u = document.getElementById("u"); 
+		    var it = u.getElementsByTagName("li");
+		  var s=it[i].innerText;
+           j=i;
         del(s);
       };
    
