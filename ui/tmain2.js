@@ -65,10 +65,12 @@ var i;
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
      // var ul = document.getElementById("u");
-      alert('inside close');
+     
 var div = this.parentElement;
     div.style.display = "none";
-   
+   var u = document.getElementById("u"); 
+		    var it = u.getElementsByTagName("li");
+		  var s=it[i].innerText;
  //del(i);
       
   };
@@ -136,7 +138,7 @@ li.appendChild(button);*/
   }
        
 
-/*function lo(){
+function lo(){
        
         //Create a request object
         var request = new XMLHttpRequest();
@@ -150,14 +152,17 @@ li.appendChild(button);*/
                 if(request.status === 200)
                 {
                     var names = request.responseText;
-                   names=JSON.getString.data;
+               var obj = JSON.parse(names);
+
+
                     var list = '';
-                    for(var i = 0;i < names.length;i++){
+                    for(var i = 0;i < obj.length;i++){
                         
-                         list += '<li>' + names[i] + '</li>';
+                         list += '<li>' + obj[i].data + '</li>';
                     }
-                    var ul = document.getElementById('l');
-                    ul.innerHTML = list;
+                    alert("inside lo");
+                    //var ul = document.getElementById('l');
+                    //ul.innerHTML = list;
                 }
             }
         };
