@@ -25,7 +25,7 @@ function addb()
      }
 
 
-		function del(s)
+		function del()
 		{  alert("inside del");
 	
 		 // alert(k+"deleted");
@@ -65,9 +65,10 @@ var i;
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
      // var ul = document.getElementById("u");
+      alert('inside close');
 var div = this.parentElement;
     div.style.display = "none";
-    alert('inside close');
+   
  //del(i);
       
   };
@@ -126,7 +127,7 @@ li.appendChild(button);*/
         var div = this.parentElement;
         div.style.display = "none";
         alert('deleted');
-        del(s);
+        del();
       };
    
          
