@@ -23,37 +23,7 @@ function addb()
        request.send(JSON.stringify({data:data}));  
      }
      
-/*    // function addl(){
- var register = document.getElementById('a');
-   register.onclick = function () {
-        // Create a request object
-        var request = new XMLHttpRequest();
-        
-        // Capture the response and store it in a variable
-        request.onreadystatechange = function () {
-          if (request.readyState === XMLHttpRequest.DONE) {
-              // Take some action
-              if (request.status === 200) {
-                  alert('User created successfully');
-                  register.value = 'added!';
-              } else {
-                  alert('Could not register the user');
-                  register.value = 'add';
-              }
-          }
-        };
-        
-        // Make the request
-        var li = document.getElementById('in').value;
-        //var password = document.getElementById('password').value;
-      //  console.log(username);
-        console.log(li);
-        request.open('POST', '/clist/', true);
-        request.setRequestHeader('Content-Type', 'application/json');
-        request.send(JSON.stringify({li:li}));  
-       // register.value = 'Registering...';
-    
-    };*/
+
 
 
 
@@ -67,13 +37,7 @@ for (i = 0; i < close.length; i++) {
   };
 }
 
-/*// Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('.checked');
-  }
-}, false);*/
+
 
 // Create a new list item when clicking on the "Add" button
   function ele() {
@@ -121,9 +85,9 @@ list.addEventListener('click', function(ev) {
         <h3> Hi <i>${username}</i></h3>
         `;
 }
-/*function lo(){
+function lo(){
 
-        onclick="lo()"
+        onclick="lo()";
         //Create a request object
         var request = new XMLHttpRequest();
     
@@ -136,12 +100,13 @@ list.addEventListener('click', function(ev) {
                 if(request.status === 200)
                 {
                     var names = request.responseText;
-                    names = JSON.parse(names);
+                   names=JSON.getString.data;
                     var list = '';
                     for(var i = 0;i < names.length;i++){
+                        
                          list += '<li>' + names[i] + '</li>';
                     }
-                    var ul = document.getElementById('u');
+                    var ul = document.getElementById('l');
                     ul.innerHTML = list;
                 }
             }
@@ -152,5 +117,5 @@ list.addEventListener('click', function(ev) {
         request.open('GET','http://harrishsreedhar.imad.hasura-app.io/view-list', true);
         request.send(null);
 };
-}*/
+}
 loadLogin();
