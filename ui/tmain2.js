@@ -24,7 +24,7 @@ function addb()
      }
 
 
-		function del(i)
+		function del()
 		{  alert("inside del");
 		    var it = document.getElementsByTagName("li");
 		  var s=it[i].value;
@@ -51,7 +51,7 @@ function addb()
 			
 			}*/
 		
-			};
+			}
 			
 		/*	 // Make the request---corresponding JS:
 			 'DELETE from list where user_id= $1 and id = $2',  [req.session.auth.userId],[req.query.name], function (err, result) {
@@ -118,7 +118,7 @@ li.appendChild(button);*/
 
     for (i = 0; i < close.length; i++) {
       close[i].onclick = function() {
-          del(i);
+          del();
         var div = this.parentElement;
         div.style.display = "none";
         alert('deleted');
