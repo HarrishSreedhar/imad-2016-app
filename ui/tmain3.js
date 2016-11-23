@@ -13,11 +13,11 @@ function lo(){
                 if(request.status === 200)
                 {
                     var names = request.responseText;
-                   names=JSON.getString.data;
+                  var o=JSON.parse(names);
                     var list = '';
-                    for(var i = 0;i < names.length;i++){
+                    for(var i = 0;i < o.length;i++){
                         
-                         list += '<li>' + names[i] + '</li>';
+                         list += '<li>' + o[i].data + '</li>';
                     }
                     var ul = document.getElementById('u');
                     ul.innerHTML = list;
