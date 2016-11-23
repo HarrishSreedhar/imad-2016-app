@@ -138,7 +138,7 @@ li.appendChild(button);*/
   }
        
 
-function lo(){
+/*function lo(){
        
         //Create a request object
         var request = new XMLHttpRequest();
