@@ -122,8 +122,7 @@ list.addEventListener('click', function(ev) {
         `;
 }
 function lo(){
-var submit = document.getElementById('vi');
-submit.onclick = function() {
+
         
         //Create a request object
         var request = new XMLHttpRequest();
