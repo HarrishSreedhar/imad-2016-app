@@ -28,7 +28,7 @@ function addb()
 		function del(s)
 		{  alert("inside del");
 	
-		  alert(k+"deleted");
+		 // alert(k+"deleted");
 			 /*var request = new XMLHttpRequest();
 				
 				// Capture the response and store it in a variable
@@ -67,6 +67,7 @@ for (i = 0; i < close.length; i++) {
      // var ul = document.getElementById("u");
 var div = this.parentElement;
     div.style.display = "none";
+    alert('inside close');
  //del(i);
       
   };
@@ -118,9 +119,9 @@ li.appendChild(button);*/
    
     for (i = 0; i < close.length; i++) {
       close[i].onclick = function() {
-          	var table = document.getElementById("u"); 
+          /*	var table = document.getElementById("u"); 
 		    var it = document.getElementsByTagName("li");
-		  var s=it[i].innerText;
+		  var s=it[i].innerText;*/
            j=i;
         var div = this.parentElement;
         div.style.display = "none";
