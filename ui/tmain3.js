@@ -21,9 +21,9 @@ function lo(){
                          var li = document.createElement("li");
                          li.appendChild(document.createTextNode(o[i].data));
 var button = document.createElement("button");
-button.innerHTML = "delete";
+button.innerHTML = "    delete";
 li.appendChild(button);
-li.setAttribute("id","element4");
+li.setAttribute("id",i);
 ul.appendChild(li);
                         
                      //    list += '<li>' +  + '</li>';
