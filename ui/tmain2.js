@@ -31,22 +31,24 @@ var close = document.getElementsByClassName("close");
 var i;
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  };
-/*  var ul = form.getElementsByTagName('u');
-ul = ul && ul[0];
-console.log(ul);*/
-
-var ul = document.getElementById("u");
+      var ul = document.getElementById("u");
 var it = ul.getElementsByTagName("li");
 //for (var j = 0; i < items.length; ++i) {
     alert(it[i].innerText);
   // do something with items[i], which is a <li> element
-}
-}
+
+
 // close[i].onclick=dele(i);
+
+    var div = this.parentElement;
+    div.style.display = "none";
+  };
 }
+/*  var ul = form.getElementsByTagName('u');
+ul = ul && ul[0];
+console.log(ul);*/
+
+
 
 
 
