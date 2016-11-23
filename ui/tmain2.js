@@ -25,7 +25,7 @@ function addb()
      }
 
 
-		function del(s)
+		function del()
 		{  alert("inside del");
 	
 		 // alert(k+"deleted");
@@ -124,11 +124,11 @@ li.appendChild(button);*/
         var div = this.parentElement;
         div.style.display = "none";
         alert('deleted');
-        var u = document.getElementById("u"); 
+      /*  var u = document.getElementById("u"); 
 		    var it = u.getElementsByTagName("li");
 		  var s=it[i].innerText;
-           j=i;
-        del(s);
+           j=i;*/
+        del();
       };
    
          
