@@ -25,9 +25,9 @@ function addb()
 
 
 		function del(i)
-		{var it = document.getElementsByTagName("li");
-//for (var j = 0; i < it.length; ++i) {
-    var s=it[i].value;
+		{ var it = document.getElementsByTagName("li");
+		  var s=it[i].value;
+		   alert(s+"deleted");
 			 /*var request = new XMLHttpRequest();
 				
 				// Capture the response and store it in a variable
@@ -49,7 +49,7 @@ function addb()
 				request.open('GET', "/del-list?name="+i, true);
 			
 			}*/
-			alert(s);
+		
 			};
 			
 		/*	 // Make the request---corresponding JS:
@@ -120,6 +120,7 @@ li.appendChild(button);*/
         var div = this.parentElement;
         div.style.display = "none";
         alert('deleted');
+        del(i);
       };
    
          
