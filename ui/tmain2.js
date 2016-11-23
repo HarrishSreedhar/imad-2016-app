@@ -25,12 +25,10 @@ function addb()
      }
 
 
-		function del(k)
+		function del(s)
 		{  alert("inside del");
-		var table = document.getElementById("u"); 
-		    var it = document.getElementsByTagName("li");
-		  var s=it[k].innerText;
-		  alert(s+"deleted");
+	
+		  alert(k+"deleted");
 			 /*var request = new XMLHttpRequest();
 				
 				// Capture the response and store it in a variable
@@ -120,11 +118,14 @@ li.appendChild(button);*/
    
     for (i = 0; i < close.length; i++) {
       close[i].onclick = function() {
+          	var table = document.getElementById("u"); 
+		    var it = document.getElementsByTagName("li");
+		  var s=it[i].innerText;
            j=i;
         var div = this.parentElement;
         div.style.display = "none";
         alert('deleted');
-        del(j);
+        del(s);
       };
    
          
