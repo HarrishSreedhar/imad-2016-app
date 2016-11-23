@@ -40,7 +40,8 @@ console.log(ul);
 
 var lis = form.getElementsByTagName('li');
 for (var i = 0; i < lis.length; i++) {
-    console.log(lis[i].innerText);
+    alert(lis[i].innerText);
+    break;
 }
 // close[i].onclick=dele(i);
 }
