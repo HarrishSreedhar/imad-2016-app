@@ -105,7 +105,7 @@ input {
   cursor: pointer;
   transition: 1.0s;
 }
-.add {
+#add {
   border-radius: 8px;
   padding: 10px;
   width: 15%;
@@ -118,6 +118,6 @@ input {
   transition: 1.0s;
 }
 
-.add:hover {
+#add:hover {
   background-color: #bbb;
 }
