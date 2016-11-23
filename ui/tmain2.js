@@ -85,7 +85,7 @@ for (i = 0; i < close.length; i++) {
         <h3> Hi <i>${username}</i></h3>
         `;
 }
-function lo(){
+/*function lo(){
 
        
         //Create a request object
@@ -117,5 +117,5 @@ function lo(){
         request.open('GET','http://harrishsreedhar.imad.hasura-app.io/view-list', true);
         request.send(null);
 };
-}
+}*/
 loadLogin();
