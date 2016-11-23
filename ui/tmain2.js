@@ -87,8 +87,8 @@ list.addEventListener('click', function(ev) {
   //var num=document.createTextNode(v+"");
     // var br=document.createTextNode(")  ");
     
-    li.appendChild(num);
-    li.appendChild(br);
+  //  li.appendChild(num);
+   // li.appendChild(br);
     li.appendChild(t);
     //ele.count++;
     if (inputValue === '') {
