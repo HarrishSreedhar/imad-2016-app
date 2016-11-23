@@ -1,7 +1,11 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
-var Pool = require('pg').Pool
+var Pool = require('pg').Pool;
+var crypto = require('crypto');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var na;
 var config={
     user: 'harrishsreedhar',
     database:'harrishsreedhar',
@@ -14,26 +18,8 @@ app.use(morgan('combined'));
 
 
 var pool = new Pool(config);
-app.get('/test',function(req,res){
-   pool.query("SELECT * FROM test",function(err,result){
-       if(err){
-           res.status(500).send(err.toString());
-           
-       }else{
-           res.send(JSON.stringify(result.rows));
-       }
-   });   
-});
 
 
-
-
-app.get('/submit-name/',function(req,res){//URL:?name
-    var name=req.query.name;
-    names.push(name);
-    res.send(JSON.stringify(names));    
-    
-});
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname,'to1.html'));
 });
