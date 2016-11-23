@@ -7,7 +7,7 @@ function addb()
           if (request.readyState === XMLHttpRequest.DONE) {
               // Take some action
               if (request.status === 200) {
-                  alert('List created successfully');
+                 // alert('List created successfully');
                   //register.value = 'Registered!';
               } else {
                   //alert('Could not register the user');
@@ -84,8 +84,8 @@ list.addEventListener('click', function(ev) {
     var li = document.createElement("li");
     var inputValue = document.getElementById("in").value;
     var t = document.createTextNode(inputValue);
-  var num=document.createTextNode(v+"");
-     var br=document.createTextNode(")  ");
+  //var num=document.createTextNode(v+"");
+    // var br=document.createTextNode(")  ");
     
     li.appendChild(num);
     li.appendChild(br);
