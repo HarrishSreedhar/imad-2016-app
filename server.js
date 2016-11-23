@@ -68,7 +68,7 @@ app.post('/create-user', function (req, res) {
    var dbString = hash(password, salt);
    pool.query('INSERT INTO tuser (username, password) VALUES ($1, $2)', [username, dbString], function (err, result) {
       if (err) {
-          res.status(500).send(err.toString());
+          res.status(500).send('Try another username');
       } else {
           res.send('User successfully created: ' + username);
       }
@@ -197,9 +197,9 @@ app.post('/create-list', function (req, res) {
     
 });
 
-/*app.get('/articles/:articleName', function (req, res) {
+app.get('view-list', function (req, res) {
   // SELECT * FROM article WHERE title = '\'; DELETE WHERE a = \'asdf'
-  pool.query("SELECT * FROM articles WHERE title = $1", [req.params.articleName], function (err, result) {
+  pool.query("SELECT * FROM list WHERE title = $1",  [req.session.auth.userId], function (err, result) {
     if (err) {
         res.status(500).send(err.toString());
     } else {
@@ -207,12 +207,12 @@ app.post('/create-list', function (req, res) {
             res.status(404).send('Article not found');
         } else {
             var articleData = result.rows[0];
-            res.send(createTemplate(articleData));
+            res.send(JSON.stringify(result.rows));
         }
     }
   });
 });
-*/
+
 app.get('/ui/:fileName', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', req.params.fileName));
 });
