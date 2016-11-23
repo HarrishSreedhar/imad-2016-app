@@ -93,6 +93,73 @@ app.post('/clist', function (req, res) {
       }
    });
 });
+app.post('/login', function (req, res) {
+   var username = req.body.username;
+   var password = req.body.password;
+   
+   pool.query('SELECT * FROM tuser WHERE username = $1', [username], function (err, result) {
+      if (err) {
+          res.status(500).send(err.toString());
+      } else {
+          if (result.rows.length === 0) {
+              res.status(403).send('username/password is invalid');
+          } else {
+              // Match the password
+              var dbString = result.rows[0].password;
+              var salt = dbString.split('$')[2];
+              var hashedPassword = hash(password, salt); // Creating a hash based on the password submitted and the original salt
+              if (hashedPassword === dbString) {
+                
+                // Set the session
+                req.session.auth = {userId: result.rows[0].id};
+                // set cookie with a session id
+                // internally, on the server side, it maps the session id to an object
+                // { auth: {userId }}
+                
+                res.send('credentials correct!');
+                
+              } else {
+                res.status(403).send('username/password is invalid');
+              }
+          }
+      }
+   });
+});
+
+app.get('/check-login', function (req, res) {
+   if (req.session && req.session.auth && req.session.auth.userId) {
+       // Load the user object
+       pool.query('SELECT * FROM tuser WHERE id = $1', [req.session.auth.userId], function (err, result) {
+           if (err) {
+              res.status(500).send(err.toString());
+           } else { na=result.rows[0].username;
+              res.send(result.rows[0].username);    
+           }
+       });
+   } else {
+       res.status(400).send('You are not logged in');
+   }
+});
+
+app.get('/logout', function (req, res) {
+   delete req.session.auth;
+   res.send('<html><body>Logged out!<br/><br/><a href="/">Back to home</a></body></html>');
+});
+app.get('/view-list', function (req, res) {
+  // SELECT * FROM article WHERE title = '\'; DELETE WHERE a = \'asdf'
+  pool.query("SELECT * FROM list WHERE id = $1",  [req.session.auth.userId], function (err, result) {
+    if (err) {
+        res.status(500).send(err.toString());
+    } else {
+        if (result.rows.length === 0) {
+            res.status(404).send('Article not found');
+        } else {
+            var articleData = result.rows[0];
+            res.send(JSON.stringify(result.rows));
+        }
+    }
+  });
+});
 
 
 app.get('/ui/:fileName', function (req, res) {
