@@ -34,8 +34,14 @@ for (i = 0; i < close.length; i++) {
     var div = this.parentElement;
     div.style.display = "none";
   };
-   var elementsLI = document.getElementsByTagName('li');
- alert(elementsLI[i].value);
+  var ul = form.getElementsByTagName('u');
+ul = ul && ul[0];
+console.log(ul);
+
+var lis = form.getElementsByTagName('li');
+for (var i = 0; i < lis.length; i++) {
+    console.log(lis[i].innerText);
+}
 // close[i].onclick=dele(i);
 }
 
