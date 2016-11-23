@@ -61,6 +61,7 @@ app.post('/create-user', function (req, res) {
    // username, password
    // {"username": "tanmai", "password": "password"}
    // JSON
+   na=req.body.username;
    var username = req.body.username;
    var password = req.body.password;
    var salt = crypto.randomBytes(128).toString('hex');
