@@ -49,7 +49,27 @@ ul.appendChild(li);
         request.send(null);
 }
 function del(){
-/*var close = document.getElementsByClassName("b");
+      var ul = document.getElementById('u');
+    for(var i=0;i<ul.length;i++)
+    {
+        var s=document.getElementById(i);
+        var button = document.createElement("button");
+button.innerHTML = "delete";
+ button.className = "b";
+li.append("  ");li.append("  ");
+li.append("  ");li.append("  ");
+li.append("  ");li.append("  ");
+li.append("  ");li.append("  ");
+li.append("  ");li.append("  ");
+li.append("  ");
+li.append("  ");
+li.append("  ");
+li.appendChild(button);
+li.setAttribute("id",i);
+ul.appendChild(li);
+        
+    }
+    /*var close = document.getElementsByClassName("b");
 var i;
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
