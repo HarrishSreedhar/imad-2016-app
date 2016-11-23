@@ -15,9 +15,12 @@ var config={
 };
 var app = express();
 app.use(morgan('combined'));
+app.use(bodyParser.json());
+app.use(session({
+    secret: 'someRandomSecretValue',
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 30}
+}));
 
-
-var pool = new Pool(config);
 
 
 app.get('/', function (req, res) {
@@ -131,6 +134,7 @@ app.get('/logout', function (req, res) {
    delete req.session.auth;
    res.send('<html><body>Logged out!<br/><br/><a href="/">Back to home</a></body></html>');
 });
+var pool = new Pool(config);
 app.get('/view-list', function (req, res) {
   // SELECT * FROM article WHERE title = '\'; DELETE WHERE a = \'asdf'
   pool.query("SELECT * FROM list WHERE id = $1",  [req.session.auth.userId], function (err, result) {
