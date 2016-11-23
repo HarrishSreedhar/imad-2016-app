@@ -90,7 +90,7 @@ app.post('/clist', function (req, res) {
       if (err) {
           res.status(500).send(err.toString());
       } else {
-          res.send('List successfully created:' + username);
+          res.status(502).send('List successfully created:');
       }
    });
 });
