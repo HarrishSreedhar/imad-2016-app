@@ -34,14 +34,16 @@ for (i = 0; i < close.length; i++) {
     var div = this.parentElement;
     div.style.display = "none";
   };
-  var ul = form.getElementsByTagName('u');
+/*  var ul = form.getElementsByTagName('u');
 ul = ul && ul[0];
-console.log(ul);
+console.log(ul);*/
 
-var lis = form.getElementsByTagName('li');
-for (var i = 0; i < lis.length; i++) {
-    alert(lis[i].innerText);
-    break;
+var ul = document.getElementById("u");
+var it = ul.getElementsByTagName("li");
+//for (var j = 0; i < items.length; ++i) {
+    alert(it[i].innerText);
+  // do something with items[i], which is a <li> element
+}
 }
 // close[i].onclick=dele(i);
 }
