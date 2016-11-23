@@ -138,38 +138,4 @@ li.appendChild(button);*/
   }
        
 
-/*function lo(){
-       
-        //Create a request object
-        var request = new XMLHttpRequest();
-    
-        //Capture the response and store it in a variable
-        request.onreadystatechange = function()
-        {
-            if(request.readyState === XMLHttpRequest.DONE)
-            {
-                //Take some action
-                if(request.status === 200)
-                {
-                    var names = request.responseText;
-               var obj = JSON.parse(names);
-
-
-                    var list = '';
-                    for(var i = 0;i < obj.length;i++){
-                        
-                         list += '<li>' + obj[i].data + '</li>';
-                    }
-                    alert("inside lo");
-                    //var ul = document.getElementById('l');
-                    //ul.innerHTML = list;
-                }
-            }
-        };
-    
-         //Render the variable in the correct span
-       
-        request.open('GET','http://harrishsreedhar.imad.hasura-app.io/view-list', true);
-        request.send(null);
-};
-}*/
+/*
