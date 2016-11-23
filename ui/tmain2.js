@@ -121,9 +121,9 @@ list.addEventListener('click', function(ev) {
         <h3> Hi <i>${username}</i></h3>
         `;
 }
-function lo(){
+/*function lo(){
 
-        
+        onclick="lo()"
         //Create a request object
         var request = new XMLHttpRequest();
     
@@ -152,5 +152,5 @@ function lo(){
         request.open('GET','http://harrishsreedhar.imad.hasura-app.io/view-list', true);
         request.send(null);
 };
-}
+}*/
 loadLogin();
