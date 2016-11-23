@@ -19,7 +19,7 @@ function addb()
      var data = document.getElementById('in').value;
       request.open('POST', '/clist', true);
         request.setRequestHeader('Content-Type', 'application/json');
-        //alert(data);// console.log(data);
+        alert(data+'is stored in database');// console.log(data);
        request.send(JSON.stringify({data:data}));  
      }
      
