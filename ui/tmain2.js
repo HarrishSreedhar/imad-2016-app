@@ -1,4 +1,3 @@
-var j;
 function addb()
 {
 	 var request = new XMLHttpRequest();
@@ -25,48 +24,7 @@ function addb()
      }
 
 
-		function del(j)
-		{  alert("inside del");
 	
-		  	var ul = document.getElementById("u"); 
-		    var it = ul.getElementsByTagName("li");
-		    var s=it[j].innerText;
-		  alert(s+"deleted");
-			 var request = new XMLHttpRequest();
-				
-				// Capture the response and store it in a variable
-				request.onreadystatechange = function () {
-				  if (request.readyState === XMLHttpRequest.DONE) {
-					  // Take some action
-					  if (request.status === 200) {
-						  //alert('List deleted successfully');
-						  //register.value = 'Registered!';
-					  } else {
-						  alert('Could not delete the user');
-						  //register.value = 'Register';
-					  }
-				  }
-				};
-				
-			   
-				
-				request.open('POST', "/del-list", true);
-			
-        request.setRequestHeader('Content-Type', 'application/json');
-       
-       request.send(JSON.stringify({data:s}));  
-			
-			}
-		
-		
-			
-		/*	 // Make the request---corresponding JS:
-			 'DELETE from list where user_id= $1 and id = $2',  [req.session.auth.userId],[req.query.name], function (err, result) {
-					if (err) {}
-		}*/
-}
-
-
 var close = document.getElementsByClassName("close");
 var i;
 for (i = 0; i < close.length; i++) {
@@ -144,6 +102,48 @@ li.appendChild(button);*/
         <h3> Hi <i>${username}</i></h3>
         `;
 }
+	function del(j)
+		{  alert("inside del");
+	
+		  	var ul = document.getElementById("u"); 
+		    var it = ul.getElementsByTagName("li");
+		    var s=it[j].innerText;
+		  alert(s+"deleted");
+			 var request = new XMLHttpRequest();
+				
+				// Capture the response and store it in a variable
+				request.onreadystatechange = function () {
+				  if (request.readyState === XMLHttpRequest.DONE) {
+					  // Take some action
+					  if (request.status === 200) {
+						  //alert('List deleted successfully');
+						  //register.value = 'Registered!';
+					  } else {
+						  alert('Could not delete the user');
+						  //register.value = 'Register';
+					  }
+				  }
+				};
+				
+			   
+				
+				request.open('POST', "/del-list", true);
+			
+        request.setRequestHeader('Content-Type', 'application/json');
+       
+       request.send(JSON.stringify({data:s}));  
+			
+			}
+		
+		
+			
+		/*	 // Make the request---corresponding JS:
+			 'DELETE from list where user_id= $1 and id = $2',  [req.session.auth.userId],[req.query.name], function (err, result) {
+					if (err) {}
+		}*/
+}
+
+
 /*function lo(){
 
        
