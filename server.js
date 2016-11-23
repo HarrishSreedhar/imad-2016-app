@@ -199,7 +199,7 @@ app.post('/create-list', function (req, res) {
 
 app.get('/view-list', function (req, res) {
   // SELECT * FROM article WHERE title = '\'; DELETE WHERE a = \'asdf'
-  pool.query("SELECT * FROM list WHERE title = $1",  [req.session.auth.userId], function (err, result) {
+  pool.query("SELECT * FROM list WHERE id = $1",  [req.session.auth.userId], function (err, result) {
     if (err) {
         res.status(500).send(err.toString());
     } else {
