@@ -27,8 +27,8 @@ function addb()
 
 		function del(k)
 		{  alert("inside del");
-		var table = document.getElementById("u"); 
-		    var it = document.getElementsByTagName("li");
+		var ul = document.getElementById("u"); 
+		    var it = ul.getElementsByTagName("li");
 		  var s=it[k].innerText;
 		  alert(s+"deleted");
 			 /*var request = new XMLHttpRequest();
