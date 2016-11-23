@@ -14,13 +14,22 @@ function lo(){
                 {
                     var names = request.responseText;
                   var o=JSON.parse(names);
-                    var list = '';
-                    for(var i = 0;i < o.length;i++){
-                        
-                         list += '<li>' + o[i].data + '</li>';
-                    }
+                  
+
                     var ul = document.getElementById('u');
-                    ul.innerHTML = list;
+                    for(var i = 0;i < o.length;i++){
+                         var li = document.createElement("li");
+                         li.appendChild(document.createTextNode(o[i].data));
+var button = document.createElement("button");
+button.innerHTML = "delete";
+li.appendChild(button);
+li.setAttribute("id","element4");
+ul.appendChild(li);
+                        
+                     //    list += '<li>' +  + '</li>';
+                    }
+                    
+                   // ul.innerHTML = list;
                 }
             }
         };
