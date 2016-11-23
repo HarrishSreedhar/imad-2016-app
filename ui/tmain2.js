@@ -24,6 +24,36 @@ function addb()
      }
 
 
+		function del(s)
+		{
+			 /*var request = new XMLHttpRequest();
+				
+				// Capture the response and store it in a variable
+				request.onreadystatechange = function () {
+				  if (request.readyState === XMLHttpRequest.DONE) {
+					  // Take some action
+					  if (request.status === 200) {
+						  //alert('User created successfully');
+						  //register.value = 'Registered!';
+					  } else {
+						  //alert('Could not register the user');
+						  //register.value = 'Register';
+					  }
+				  }
+				};
+				
+			   
+				
+				request.open('GET', "/del-list?name="+i, true);
+			
+			}*/
+			alert(s);
+			};
+			
+		/*	 // Make the request---corresponding JS:
+			 'DELETE from list where user_id= $1 and id = $2',  [req.session.auth.userId],[req.query.name], function (err, result) {
+					if (err) {}
+		}*/
 
 
 
@@ -31,18 +61,17 @@ var close = document.getElementsByClassName("close");
 var i;
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
-      var ul = document.getElementById("u");
-var it = ul.getElementsByTagName("li");
-//for (var j = 0; i < items.length; ++i) {
-    alert(it[i].innerText);
-  // do something with items[i], which is a <li> element
-
-
-// close[i].onclick=dele(i);
-
-    var div = this.parentElement;
+     // var ul = document.getElementById("u");
+var it = document.getElementsByTagName("li");
+//for (var j = 0; i < it.length; ++i) {
+    var s=it[i].value;
+  // close[i].onclick=dele(i);
+     var div = this.parentElement;
     div.style.display = "none";
+
+      
   };
+  del(s);
 }
 /*  var ul = form.getElementsByTagName('u');
 ul = ul && ul[0];
