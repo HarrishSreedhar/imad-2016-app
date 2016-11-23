@@ -1,3 +1,4 @@
+var j;
 function addb()
 {
 	 var request = new XMLHttpRequest();
@@ -115,14 +116,14 @@ li.appendChild(button);*/
     span.className = "close";
     span.appendChild(txt);
     li.appendChild(span);
-
+   
     for (i = 0; i < close.length; i++) {
       close[i].onclick = function() {
-          del();
+           j=i;
         var div = this.parentElement;
         div.style.display = "none";
         alert('deleted');
-        
+        del(j);
       };
    
          
