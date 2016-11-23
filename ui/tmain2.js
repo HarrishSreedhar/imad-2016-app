@@ -34,6 +34,9 @@ for (i = 0; i < close.length; i++) {
     var div = this.parentElement;
     div.style.display = "none";
   };
+   var elementsLI = document.getElementsByTagName('li');
+ alert(elementsLI[i].value);
+// close[i].onclick=dele(i);
 }
 
 
