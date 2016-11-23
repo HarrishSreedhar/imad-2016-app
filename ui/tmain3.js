@@ -20,8 +20,8 @@ function lo(){
                     for(var i = 0;i < o.length;i++){
                          var li = document.createElement("li");
                          li.appendChild(document.createTextNode(o[i].data));
-/*var button = document.createElement("button");
-button.innerHTML = "delete";
+var button = document.createElement("button");
+/*button.innerHTML = "delete";
  button.className = "b";
 li.append("  ");li.append("  ");
 li.append("  ");li.append("  ");
@@ -32,7 +32,12 @@ li.append("  ");
 li.append("  ");
 li.append("  ");
 li.appendChild(button);*/
-li.setAttribute("id",i);
+var num=document.createTextNode(i+1+"");
+     var br=document.createTextNode(")  ");
+    
+    li.appendChild(num);
+    li.appendChild(br);
+li.setAttribute("id",i+1);
 ul.appendChild(li);
                         
                      //    list += '<li>' +  + '</li>';
@@ -48,7 +53,7 @@ ul.appendChild(li);
         request.open('GET','http://harrishsreedhar.imad.hasura-app.io/view-list', true);
         request.send(null);
 }
-function del(){
+/*function del(){
      alert("inside del");
       var ul = document.getElementById('u');
     for(var i=0;i<ul.length;i++)
@@ -81,5 +86,5 @@ for (i = 0; i < close.length; i++) {
  
 var m= s.innerText ||s.textContent;
  alert(m);*/
-}
+}*/
  
