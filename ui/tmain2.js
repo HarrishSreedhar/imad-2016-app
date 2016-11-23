@@ -157,43 +157,8 @@ app.get('/view-list', function (req, res) {
     }
   });
 });
-app.get('/view-list', function (req, res) {
-  // SELECT * FROM article WHERE title = '\'; DELETE WHERE a = \'asdf'
-  pool.query("SELECT * FROM list WHERE id = $1",  [req.session.auth.userId], function (err, result) {
-    if (err) {
-        res.status(500).send(err.toString());
-    } else {
-        if (result.rows.length === 0) {
-            res.status(404).send('Article not found');
-        } else {
-            var a = result.rows;
-            res.send(JSON.stringify(a));
-        }
-    }
-  });
-});
 
-app.post('/del-list', function (req, res) {
-   // username, password
-   // {"username": "tanmai", "password": "password"}
-   // JSON
-   var li = req.body.data;var uname;
-  /* pool.query('SELECT * FROM tuser WHERE id = $1', [req.session.auth.userId], function (err, result) {
-           if (err) {
-              res.status(500).send(err.toString());
-           } else {
-             uname=result.rows[0].username;    
-           }
-       });*/
-/*  pool.query('INSERT INTO list (id,data)  VALUES ($1,$2)', [req.session.auth.userId,li], function (err, result) {
-      // pool.query('INSERT INTO new (data) VALUES ($1)', [li], function (err, result) {
-      if (err) {
-          res.status(500).send(err.toString());
-      } else {
-          res.status(502).send('List successfully created:');
-      }
-   });*/
-});
+
 app.get('/ui/:fileName', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', req.params.fileName));
 });
