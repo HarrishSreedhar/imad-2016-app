@@ -22,6 +22,12 @@ function lo(){
                          li.appendChild(document.createTextNode(o[i].data));
 var button = document.createElement("button");
 button.innerHTML = "delete";
+ button.className = "b";
+li.append("  ");li.append("  ");
+li.append("  ");li.append("  ");
+li.append("  ");li.append("  ");
+li.append("  ");li.append("  ");
+li.append("  ");li.append("  ");
 li.append("  ");
 li.append("  ");
 li.append("  ");
