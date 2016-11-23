@@ -24,8 +24,10 @@ function addb()
      }
 
 
-		function del(s)
-		{
+		function del(i)
+		{var it = document.getElementsByTagName("li");
+//for (var j = 0; i < it.length; ++i) {
+    var s=it[i].value;
 			 /*var request = new XMLHttpRequest();
 				
 				// Capture the response and store it in a variable
@@ -62,16 +64,12 @@ var i;
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
      // var ul = document.getElementById("u");
-var it = document.getElementsByTagName("li");
-//for (var j = 0; i < it.length; ++i) {
-    var s=it[i].value;
-  // close[i].onclick=dele(i);
-     var div = this.parentElement;
+var div = this.parentElement;
     div.style.display = "none";
-
+ //del(i);
       
   };
-  del(s);
+ 
 }
 /*  var ul = form.getElementsByTagName('u');
 ul = ul && ul[0];
@@ -104,6 +102,12 @@ console.log(ul);*/
       document.getElementById("u").appendChild(li);
     }
     document.getElementById("in").value = "";
+    
+   /* var button = document.createElement("button");
+button.innerHTML = "Delete";
+li.appendChild(button);*/
+
+    
 
     var span = document.createElement("SPAN");
     var txt = document.createTextNode("\u00D7");
@@ -115,6 +119,7 @@ console.log(ul);*/
       close[i].onclick = function() {
         var div = this.parentElement;
         div.style.display = "none";
+        alert('deleted');
       };
    
          
