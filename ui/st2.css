@@ -67,6 +67,9 @@ ul li:hover {
   background-color: #2344;
   color: white;
 }
+.b{
+    background-color:#2344;
+}
 
 /* Style the header */
 .header {
