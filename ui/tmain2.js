@@ -25,7 +25,7 @@ function addb()
      }
 
 
-		function del()
+		function del(s)
 		{  alert("inside del");
 	
 		 // alert(k+"deleted");
@@ -120,14 +120,14 @@ li.appendChild(button);*/
    
     for (i = 0; i < close.length; i++) {
       close[i].onclick = function() {
-          /*	var table = document.getElementById("u"); 
-		    var it = document.getElementsByTagName("li");
-		  var s=it[i].innerText;*/
+          	var u = document.getElementById("u"); 
+		    var it = u.getElementsByTagName("li");
+		  var s=it[i].innerText;
            j=i;
         var div = this.parentElement;
         div.style.display = "none";
         alert('deleted');
-        del();
+        del(s);
       };
    
          
