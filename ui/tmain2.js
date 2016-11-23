@@ -1,3 +1,4 @@
+var j;
 function addb()
 {
 	 var request = new XMLHttpRequest();
@@ -24,11 +25,12 @@ function addb()
      }
 
 
-		function del(i)
-		{var it = document.getElementsByTagName("li");
-//for (var j = 0; i < it.length; ++i) {
-alert('inside del');
-    var s=it[i].value;
+		function del(k)
+		{  alert("inside del");
+		var table = document.getElementById("u"); 
+		    var it = document.getElementsByTagName("li");
+		  var s=it[k].innerText;
+		  alert(s+"deleted");
 			 /*var request = new XMLHttpRequest();
 				
 				// Capture the response and store it in a variable
@@ -50,14 +52,14 @@ alert('inside del');
 				request.open('GET', "/del-list?name="+i, true);
 			
 			}*/
-			alert(s);
-			};
+		
+		
 			
 		/*	 // Make the request---corresponding JS:
 			 'DELETE from list where user_id= $1 and id = $2',  [req.session.auth.userId],[req.query.name], function (err, result) {
 					if (err) {}
 		}*/
-
+}
 
 
 var close = document.getElementsByClassName("close");
@@ -115,24 +117,21 @@ li.appendChild(button);*/
     span.className = "close";
     span.appendChild(txt);
     li.appendChild(span);
-
+   
     for (i = 0; i < close.length; i++) {
       close[i].onclick = function() {
+           j=i;
         var div = this.parentElement;
         div.style.display = "none";
         alert('deleted');
+        del(j);
       };
    
          
     }
   }
-  function loadLogin() {
-      username=req.query.uid;
-    var loginArea = document.getElementById('login_area');
-    loginArea.innerHTML = `
-        <h3> Hi <i>${username}</i></h3>
-        `;
-}
+       
+
 /*function lo(){
        
         //Create a request object
@@ -165,4 +164,3 @@ li.appendChild(button);*/
         request.send(null);
 };
 }*/
-loadLogin();
