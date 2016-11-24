@@ -72,7 +72,7 @@ function loadLoginForm () {
         var username = document.getElementById('username').value;
         var password = document.getElementById('password').value;
         if(username==NULL ||password==NULL){
-            alert('Fields cant be NULL');break;
+            alert('Fields cant be NULL');
         }
         console.log(username);
         console.log(password);
