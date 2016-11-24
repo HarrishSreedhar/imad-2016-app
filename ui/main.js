@@ -58,10 +58,10 @@ function loadLoginForm () {
           if (request.readyState === XMLHttpRequest.DONE) {
               // Take some action
               if (request.status === 200) {
-                  alert('User created successfully');
+                  alert('User successfully created: Now click Login Button to unlock gr8 features');
                   register.value = 'Registered!';
               } else {
-                  alert('Could not register the user');
+                  alert('Name already exixts ;( Try another username');
                   register.value = 'Register';
               }
           }
