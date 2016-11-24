@@ -22,7 +22,7 @@ app.use(session({
 }));
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname,'to1.html'));
+  res.sendFile(path.join(__dirname,'t1.html'));
 });
  app.get('/list', function (req, res) {
  
