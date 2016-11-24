@@ -71,11 +71,6 @@ function loadLoginForm () {
         // Make the request
         var username = document.getElementById('username').value;
         var password = document.getElementById('password').value;
-        if(username==NULL || password==NULL)
-        {
-            alert("Fields cant be NULL");
-            break;
-        }
         console.log(username);
         console.log(password);
         request.open('POST', '/create-user', true);
@@ -115,7 +110,7 @@ function loadLogin () {
 
 
 
-
+// The first thing to do is to check if the user is logged in!
 loadLogin();
 
-
+// Now this is something that we could have directly done on the server-side using templating too!
