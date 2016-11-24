@@ -61,7 +61,7 @@ function loadLoginForm () {
               if (request.status === 502) {
                  alert('User successfully created: Now click Login Button to unlock gr8 features');
                   register.value = 'Registered!';
-              } else {
+              } else  if (request.status === 500) {
                   alert('Either of the fields are empty OR Username already exixts ;( ..Try again!!');
                   register.value = 'Register';
               }
