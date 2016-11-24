@@ -86,7 +86,7 @@ app.post('/clist', function (req, res) {
    // username, password
    // {"username": "tanmai", "password": "password"}
    // JSON
-  if (req.session && req.session.auth && req.session.auth.userId) {
+  
    var li = req.body.data;var uname;
   /* pool.query('SELECT * FROM tuser WHERE id = $1', [req.session.auth.userId], function (err, result) {
            if (err) {
@@ -105,9 +105,7 @@ app.post('/clist', function (req, res) {
    });
 
    }
-   else {
-       res.status(400).send('You are not logged in');
-   }
+   
    });
 
 app.post('/dlist', function (req, res) {
