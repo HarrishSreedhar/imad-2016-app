@@ -60,10 +60,12 @@ function del()
           }
         };
        // request.open('POST', '/clist/', true);
-     var i = document.getElementById('in').value;
-     var s=document.getElementById(i).innetText;
+    var p=document.getElementById('in').value;
+var r=document.getElementById(p).innerText;
+var data= r.substr(r.indexOf(")") + 1);
+alert(data);
       request.open('POST', '/dlist', true);
         request.setRequestHeader('Content-Type', 'application/json');
-        alert(data+' is stored in database');// console.log(data);
+        alert(data+' is  deleted from database');// console.log(data);
        request.send(JSON.stringify({data:data}));  
      }
