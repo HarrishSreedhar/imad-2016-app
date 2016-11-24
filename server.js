@@ -62,12 +62,12 @@ app.post('/create-user', function (req, res) {
    var dbString = hash(password, salt);
    pool.query('INSERT INTO tuser (username, password) VALUES ($1, $2)', [username, dbString], function (err, result) {
        if(username==NULL ||password==NULL){
-       res.send("Fields cant be empty");
+       res.status(502).send("Fields cant be empty");
                    }
       else if (err) {
           res.status(500).send('Try another username');
       } else {
-          res.send('User successfully created: ' + username);
+          res.status(200).send('User successfully created: ' + username);
       }
    });
   /* pool.query('INSERT INTO list (id) VALUES ($1)', [req.session.auth.userId], function (err, result) {
