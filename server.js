@@ -57,10 +57,14 @@ app.post('/create-user', function (req, res) {
    na=req.body.username;
    var username = req.body.username;
    var password = req.body.password;
+  
    var salt = crypto.randomBytes(128).toString('hex');
    var dbString = hash(password, salt);
    pool.query('INSERT INTO tuser (username, password) VALUES ($1, $2)', [username, dbString], function (err, result) {
-      if (err) {
+       if(username==NULL ||password==NULL){
+       res.send("Fields cant be empty");
+                   }
+      else if (err) {
           res.status(500).send('Try another username');
       } else {
           res.send('User successfully created: ' + username);
