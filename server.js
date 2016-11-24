@@ -61,9 +61,9 @@ app.post('/create-user', function (req, res) {
    var dbString = hash(password, salt);
    pool.query('INSERT INTO tuser (username, password) VALUES ($1, $2)', [username, dbString], function (err, result) {
       if (err) {
-          res.status(500).send('Try another username');
+          res.status(500).send('Name already exixts ;( ...Try another username');
       } else {
-          res.send('User successfully created: ' + username);
+          res.send('User successfully created: ' + username+'Now click Login Button to unlock gr8 features');
       }
    });
   /* pool.query('INSERT INTO list (id) VALUES ($1)', [req.session.auth.userId], function (err, result) {
