@@ -58,7 +58,7 @@ function loadLoginForm () {
         request.onreadystatechange = function () {
           if (request.readyState === XMLHttpRequest.DONE) {
               // Take some action
-              if ((request.status === 200)||(request.status===502)){
+              if (request.status === 200){
                  alert('User successfully created: Now click Login Button to unlock gr8 features');
                   register.value = 'Registered!';
               } else   {
