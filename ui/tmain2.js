@@ -16,21 +16,21 @@ function addb()
               }
           }
         };
-       // request.open('POST', '/clist/', true);
+
      var data = document.getElementById('in').value;
       request.open('POST', '/clist', true);
         request.setRequestHeader('Content-Type', 'application/json');
-//alert(data+' is stored in database');// console.log(data);
+//alert(data+' is stored in database');
        request.send(JSON.stringify({data:data}));  
      }
 
 
-		function del(k)
+	/*	function del(k)
 		{  alert("inside del");
 		var table = document.getElementById("u"); 
 		    var it = document.getElementsByTagName("li");
 		  var s=it[k].innerText;
-		  alert(s+"deleted");
+		  alert(s+"deleted");*/
 			 /*var request = new XMLHttpRequest();
 				
 				// Capture the response and store it in a variable
@@ -82,7 +82,7 @@ console.log(ul);*/
 
 
 
-// Create a new list item when clicking on the "Add" button
+
   function ele() {
      // static count = 1;
      //static $cou = 1;
@@ -91,11 +91,7 @@ console.log(ul);*/
     var li = document.createElement("li");
     var inputValue = document.getElementById("in").value;
     var t = document.createTextNode(inputValue);
-  //var num=document.createTextNode(v+"");
-    // var br=document.createTextNode(")  ");
-    
-  //  li.appendChild(num);
-   // li.appendChild(br);
+ 
     li.appendChild(t);
     //ele.count++;
     if (inputValue === '') {
@@ -105,13 +101,6 @@ console.log(ul);*/
       document.getElementById("u").appendChild(li);
     }
     document.getElementById("in").value = "";
-    
-   /* var button = document.createElement("button");
-button.innerHTML = "Delete";
-li.appendChild(button);*/
-
-    
-
     var span = document.createElement("SPAN");
     var txt = document.createTextNode("\u00D7");
     span.className = "close";
@@ -124,7 +113,7 @@ li.appendChild(button);*/
         var div = this.parentElement;
         div.style.display = "none";
         alert('deleted');
-        del(j);
+       // del(j);
       };
    
          
@@ -132,35 +121,3 @@ li.appendChild(button);*/
   }
        
 
-/*function lo(){
-       
-        //Create a request object
-        var request = new XMLHttpRequest();
-    
-        //Capture the response and store it in a variable
-        request.onreadystatechange = function()
-        {
-            if(request.readyState === XMLHttpRequest.DONE)
-            {
-                //Take some action
-                if(request.status === 200)
-                {
-                    var names = request.responseText;
-                   names=JSON.getString.data;
-                    var list = '';
-                    for(var i = 0;i < names.length;i++){
-                        
-                         list += '<li>' + names[i] + '</li>';
-                    }
-                    var ul = document.getElementById('l');
-                    ul.innerHTML = list;
-                }
-            }
-        };
-    
-         //Render the variable in the correct span
-       
-        request.open('GET','http://harrishsreedhar.imad.hasura-app.io/view-list', true);
-        request.send(null);
-};
-}*/
