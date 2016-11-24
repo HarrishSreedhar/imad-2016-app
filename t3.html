@@ -2,17 +2,22 @@
 <html>
 <head>
 <link href="ui/st2.css" rel="stylesheet" type="text/css" media="screen" />
+<script src="ui/tmain3.js" ></script>
 </head>
-<body>
+ 
+<body onload="lo()">
    
 <div id="di" class="header">
- <p align="left"> <span class="vi" onclick="lo()" ><!--<a href="/view-list">-->View Previous lists</span></p>
  <p align="right"><!--<span class="out"><button><a href="/logout">Logout</a></button>--><a href="/logout">Logout</a></p>
  <p align=left>	<div id="login_area"></div>
-<script src="ui/tmain3.js" ></script>
- 
-<p align="right"><span class="b" onclick="del()">Delete lists</span></p></div>
 
+  <h2 style="margin:10px"><font color="#581845">My Do List</font></h2>
+
+  
+<p align="left">    <span  onclick="lo()" class="vi">View Previous lists</span>&nbsp;&nbsp;</p><br>
+
+<p align="left"> <span class="b" onclick="del()">Delete lists</span></p>
+</div>
 <ul id="u">
   
 </ul>
