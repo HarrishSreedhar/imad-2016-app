@@ -26,7 +26,7 @@
 
 
 			function del(k)
-			{  alert("inside del");
+			{ // alert("inside del");
 			var table = document.getElementById("u"); 
 				var it = document.getElementsByTagName("li");
 			  var s=it[k].innerText;
