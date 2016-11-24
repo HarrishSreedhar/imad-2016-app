@@ -42,7 +42,7 @@ ul.appendChild(li);
         request.send(null);
 }
 
-function ch () {
+function ch() {
     // Check if the user is already logged in
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
