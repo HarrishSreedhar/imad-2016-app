@@ -35,7 +35,4 @@ ul.appendChild(li);
         request.send(null);
 }
 
-GET', '/check-login', true);
-    request.send(null);
-}
 
