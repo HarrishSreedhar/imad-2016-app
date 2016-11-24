@@ -41,3 +41,29 @@ ul.appendChild(li);
         request.open('GET','http://harrishsreedhar.imad.hasura-app.io/view-list', true);
         request.send(null);
 }
+
+function del()
+{
+	 var request = new XMLHttpRequest();
+        
+        // Capture the response and store it in a variable
+        request.onreadystatechange = function () {
+          if (request.readyState === XMLHttpRequest.DONE) {
+              // Take some action
+              if (request.status === 200) {
+                 // alert('List created successfully');
+                  //register.value = 'Registered!';
+              } else {
+                  //alert('Could not register the user');
+                  //register.value = 'Register';
+              }
+          }
+        };
+       // request.open('POST', '/clist/', true);
+     var i = document.getElementById('in').value;
+     var s=document.getElementById(i).innetText;
+      request.open('POST', '/dlist', true);
+        request.setRequestHeader('Content-Type', 'application/json');
+        alert(data+' is stored in database');// console.log(data);
+       request.send(JSON.stringify({data:data}));  
+     }
