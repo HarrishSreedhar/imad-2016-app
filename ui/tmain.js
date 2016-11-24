@@ -62,7 +62,7 @@ function loadLoginForm () {
                  alert('User successfully created: Now click Login Button to unlock gr8 features');
                   register.value = 'Registered!';
               } else {
-                  alert('Name already exixts ;(  Try another username');
+                  alert('Eiter the fields are empty or Name already exixts ;( ...Try again!!');
                   register.value = 'Register';
               }
           }
