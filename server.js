@@ -95,6 +95,22 @@ app.post('/clist', function (req, res) {
       }
    });
 });
+
+app.post('/dlist', function (req, res) {
+   // username, password
+   // {"username": "tanmai", "password": "password"}
+   // JSON
+   var li = req.body.data;
+
+      pool.query('DELETE from list where id=$1 and data=$2', [req.session.auth.userId,li], function (err, result) {
+      // pool.query('INSERT INTO new (data) VALUES ($1)', [li], function (err, result) {
+      if (err) {
+          res.status(500).send(err.toString());
+      } else {
+          res.status(502).send('List deleted successfully');
+      }
+   });
+});
 app.post('/login', function (req, res) {
    var username = req.body.username;
    var password = req.body.password;
