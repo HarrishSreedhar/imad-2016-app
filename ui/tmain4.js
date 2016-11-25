@@ -14,9 +14,9 @@ function lo(){
                 {
                     var names = request.responseText;
                   var o=JSON.parse(names);
-                  if(o===""){
-                      alert("No lists found!!...Add new lists");
-                  }
+                  
+                      
+                  
 
                     var ul = document.getElementById('u');
                     for(var i = 0;i < o.length;i++){
@@ -34,6 +34,9 @@ ul.appendChild(li);
                     }
                     
                    // ul.innerHTML = list;
+                }
+                else{
+                    alert("No lists found!!...Add new lists");
                 }
             }
         };
