@@ -26,6 +26,9 @@ ul.appendChild(li);
                     
                  
                 }
+                 else  if(request.status === 502){
+                    alert("No lists found!!...Add new lists");
+                }
             }
         };
     
