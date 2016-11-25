@@ -59,7 +59,7 @@ function loadLoginForm () {
           if (request.readyState === XMLHttpRequest.DONE) {
               // Take some action
               if (request.status === 200){
-                 alert('User successfully created: Now click Login Button to unlock gr8 features');
+                 alert('Now click "LOGIN" Button to unlock gr8 features..User successfully created: ');
                   register.value = 'Registered!';
               } else   {
                   alert('Either of the fields are empty OR Username already exixts ;( ..Try again!!');
