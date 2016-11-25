@@ -71,7 +71,7 @@ var data= r.substr(r.indexOf(")") + 1);
 alert(data);
       request.open('POST', '/dlist', true);
         request.setRequestHeader('Content-Type', 'application/json');
-        alert(data+' is  deleted from database...Click the "View" button to see the updated list');
+        alert('Click the "VIEW UPDATED LIST" button to see the updated list'+data+' is  deleted from database...');
         // console.log(data);
        request.send(JSON.stringify({data:data}));  
      }
