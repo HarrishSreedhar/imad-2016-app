@@ -35,7 +35,7 @@ ul.appendChild(li);
                     
                    // ul.innerHTML = list;
                 }
-                else{
+                else  if(request.status === 502){
                     alert("No lists found!!...Add new lists");
                 }
             }
